@@ -99,8 +99,7 @@
 	
 #### Capture Réseau
 
-	- `PS C:\Users\theo3> ssh theo@10.1.2.2`
-	- `[theo@client1 ~]$ sudo ip neigh flush all`
-	- `[theo@client1 ~]$ ip n s`
+	- 1er capture avec la requête ARP :
+	![Screenshot_1](Screensho_1.png)
 
 ## Communication simple entre deux machines
