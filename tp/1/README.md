@@ -90,9 +90,10 @@
 	
 - vider la table ARP
 
-	- `ip neigh show`
+	- `ip neigh show`<br />
+	`10.1.1.1 dev enp0s8 lladdr 0a:00:27:00:00:09 REACHABLE`
 
-- Expliquer la nouvel ligne
+- effectuer une requête simple vers l'hôte, expliquer la nouvel ligne
 
 	- On a vider la table ARP donc on a perdu une ligne, il ne rester que la ligne 2 car on était connecter en ssh, après la commande ping 10.1.2.1 le voisin s'est enregistré dans la table une 2ème fois.
 	
