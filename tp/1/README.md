@@ -102,4 +102,7 @@
 - 1er capture avec la requête ARP :
 ![Screenshot_1](https://github.com/KyoshinSan/B2-CCNA/blob/master/tp/1/Screenshot_1.png?raw=true)
 
+- 2nd capture :
+![Screenshot_2](https://github.com/KyoshinSan/B2-CCNA/blob/master/tp/1/Screenshot_2.png?raw=true)
+
 ## Communication simple entre deux machines
