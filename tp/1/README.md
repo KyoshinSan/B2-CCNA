@@ -128,3 +128,13 @@ On peut voir qu'il y a 2 échanges ARP.
 
 - Capture de requête ARP :
 ![Screenshot_4](https://github.com/KyoshinSan/B2-CCNA/blob/master/tp/1/Screenshot_4.png?raw=true)
+
+#### TCP
+
+- Ouvrir le port TCP 8888
+	- `sudo firewall-cmd --add-port=8888/tcp --permanent`<br />
+	`success`
+	- `sudo firewall-cmd --reload`
+
+- Capture de requête ARP :
+![Screenshot_5](https://github.com/KyoshinSan/B2-CCNA/blob/master/tp/1/Screenshot_5.png?raw=true)
