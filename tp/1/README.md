@@ -138,3 +138,16 @@ On peut voir qu'il y a 2 échanges ARP.
 
 - Capture de requête ARP :
 ![Screenshot_5](https://github.com/KyoshinSan/B2-CCNA/blob/master/tp/1/Screenshot_5.png?raw=true)
+
+#### Firewall
+
+- fermer l'un des deux ports 8888 (TCP ou UDP)
+	- `sudo firewall-cmd --remove-port=8888/udp --permanent`<br />
+	`success`
+	- `sudo firewall-cmd --reload`
+
+- retenter la connexion (qui ne marche pas du coup) avec `netcat`
+
+- Capture de la réponse firewall
+![Screenshot_6](https://github.com/KyoshinSan/B2-CCNA/blob/master/tp/1/Screenshot_6.png?raw=true)
+On peut voir la ligne `Destination unreachable (Host administratively prohibited)`
