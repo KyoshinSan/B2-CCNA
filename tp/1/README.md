@@ -99,7 +99,7 @@
 	
 #### Capture Réseau
 
-	- 1er capture avec la requête ARP :
-	![Screenshot_1](Screensho_1.png)
+- 1er capture avec la requête ARP :
+![Screenshot_1](https://github.com/KyoshinSan/B2-CCNA/blob/master/tp/1/Screenshot_1.png?raw=true)
 
 ## Communication simple entre deux machines
