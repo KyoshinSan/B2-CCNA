@@ -125,3 +125,6 @@ On peut voir qu'il y a 2 échanges ARP.
 - utilisation de la commande `ss -unp`
 	- `Recv-Q Send-Q                                 Local Address:Port                                                Peer Address:Port`<br />
 	`0      0                                           10.1.1.2:8888                                                    10.1.1.3:45474               users:(("nc",pid=4333,fd=4))`
+
+- Capture de requête ARP :
+![Screenshot_4](https://github.com/KyoshinSan/B2-CCNA/blob/master/tp/1/Screenshot_4.png?raw=true)
