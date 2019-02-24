@@ -105,7 +105,7 @@
 - 2nd capture :
 ![Screenshot_2](https://github.com/KyoshinSan/B2-CCNA/blob/master/tp/1/Screenshot_2.png?raw=true)
 
-## Communication simple entre deux machines
+## II. Communication simple entre deux machines
 
 ### 2.Basics
 
@@ -151,3 +151,16 @@ On peut voir qu'il y a 2 échanges ARP.
 - Capture de la réponse firewall
 ![Screenshot_6](https://github.com/KyoshinSan/B2-CCNA/blob/master/tp/1/Screenshot_6.png?raw=true)
 On peut voir la ligne `Destination unreachable (Host administratively prohibited)`
+
+## III. Routage statique simple
+
+- ajouter une route statique vers net2
+	- `sudo ip route add 10.1.2.0/30 via 10.1.1.2 dev enp0s8`
+	- `ping 10.1.2.1`<br />
+	`PING 10.1.2.1 (10.1.2.1) 56(84) bytes of data.`<br />
+	`64 bytes from 10.1.2.1: icmp_seq=1 ttl=127 time=1.07 ms`<br />
+	`64 bytes from 10.1.2.1: icmp_seq=2 ttl=127 time=1.25 ms`<br />
+	`64 bytes from 10.1.2.1: icmp_seq=3 ttl=127 time=0.945 ms`
+	- `traceroute 10.1.2.1`<br />
+	`traceroute to 10.1.2.1 (10.1.2.1), 30 hops max, 60 byte packets`<br />
+	`1  gateway (10.0.2.2)  0.223 ms  0.230 ms  0.151 ms`
