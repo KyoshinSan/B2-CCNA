@@ -5,12 +5,19 @@
 ## I. Exploration du réseau d'une machine CentOS
 ### 1. Mise en place
 #### Configuration de VirtualBox
+
 - Combien y-a-il d'adresses disponible dans un `/24` ?
+
 	- Il y en a 254. Le calcul : 2^(32-24)-2.
+	
 - Combien y-a-il d'adresses disponible dans un `/30` ?
+
 	- Il y en a 2. Même calcul.
+	
 - Quelle est l'utilité d'un `/30` ?
+
 	- C'est un réseau restreint qui permet d'attribuer que 2 adresses IP. 
+	
 #### Allumage et configuration de la VM
 
  - [x] [définition d'IP statique sur les deux cartes host-only](https://github.com/It4lik/B2-Reseau-2018/blob/master/cours/procedures.md#d%C3%A9finir-une-ip-statique)
