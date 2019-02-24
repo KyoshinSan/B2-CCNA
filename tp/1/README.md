@@ -106,3 +106,22 @@
 ![Screenshot_2](https://github.com/KyoshinSan/B2-CCNA/blob/master/tp/1/Screenshot_2.png?raw=true)
 
 ## Communication simple entre deux machines
+
+### 2.Basics
+
+#### `ping` et ARP
+
+- Capture ping-2.pcap :
+![Screenshot_3](https://github.com/KyoshinSan/B2-CCNA/blob/master/tp/1/Screenshot_3.png?raw=true)
+On peut voir qu'il y a 2 échanges ARP.
+
+#### UDP
+
+- Ouvrir le port UDP 8888
+	- `sudo firewall-cmd --add-port=8888/udp --permanent`<br />
+	`success`
+	- `sudo firewall-cmd --reload`
+
+- utilisation de la commande `ss -unp`
+	- `Recv-Q Send-Q                                 Local Address:Port                                                Peer Address:Port`<br />
+	`0      0                                           10.1.1.2:8888                                                    10.1.1.3:45474               users:(("nc",pid=4333,fd=4))`
