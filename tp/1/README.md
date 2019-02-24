@@ -95,7 +95,7 @@
 
 - effectuer une requête simple vers l'hôte, expliquer la nouvel ligne
 
-	- On a vider la table ARP donc on a perdu une ligne, il ne rester que la ligne 2 car on était connecter en ssh, après la commande ping 10.1.2.1 le voisin s'est enregistré dans la table une 2ème fois.
+	- On a vider la table ARP donc on a perdu une ligne, il ne rester que la ligne 2 car on était connecter en ssh, après la commande `ping 10.1.2.1` le voisin s'est enregistré dans la table une 2ème fois.
 	
 #### Capture Réseau
 
