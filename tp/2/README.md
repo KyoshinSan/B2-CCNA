@@ -29,3 +29,5 @@ Les VMs sont bien configuré :
 ![Screenshot_4](https://github.com/KyoshinSan/B2-CCNA/blob/master/tp/2/Screenshot_4.png?raw=true)
 
 La seul différence c'est les adresses mac.
+
+## II. NAT et services d'infra
