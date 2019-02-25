@@ -14,7 +14,7 @@ Les VMs sont bien configuré :
 
 ### 2. Routage statique
 
-- ping `client1` et `server1` :
+- ping `client1` et `server1` :<br />
 ![Screenshot_2](https://github.com/KyoshinSan/B2-CCNA/blob/master/tp/2/Screenshot_2.png?raw=true)
  
 - ping `router1` et `server1` :
