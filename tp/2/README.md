@@ -34,11 +34,11 @@ La seul différence c'est les adresses mac.
 
 Le NAT a bien été mis en place, on peut :
 - Faire un <b>curl google.com</b> depuis la machine <b>router2</b> 
-`[soussou@router2 ~]$ curl google.com
-<HTML><HEAD><meta http-equiv="content-type" content="text/html;charset=utf-8">
-<TITLE>301 Moved</TITLE></HEAD><BODY>
-<H1>301 Moved</H1>
-The document has moved
-<A HREF="http://www.google.com/">here</A>.
-</BODY></HTML>
-[soussou@router2 ~]$`
+`[soussou@router2 ~]$ curl google.com`
+`<HTML><HEAD><meta http-equiv="content-type" content="text/html;charset=utf-8">`
+`<TITLE>301 Moved</TITLE></HEAD><BODY>\'
+`<H1>301 Moved</H1>\`
+`The document has moved`
+`<A HREF="http://www.google.com/">here</A>.`
+`</BODY></HTML>`
+`[soussou@router2 ~]$`
