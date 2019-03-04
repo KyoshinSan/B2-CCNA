@@ -33,7 +33,7 @@ La seul différence c'est les adresses mac.
 ## II. NAT et services d'infra
 
 Le NAT a bien été mis en place, on peut :
-- Faire un <b>curl google.com</b> depuis la machine <b>router2</b> 
+- Faire un <b>curl google.com</b> depuis la machine <b>router2</b><br /> 
 `[soussou@router2 ~]$ curl google.com`<br />
 `<HTML><HEAD><meta http-equiv="content-type" content="text/html;charset=utf-8">`<br />
 `<TITLE>301 Moved</TITLE></HEAD><BODY>\'`<br />
