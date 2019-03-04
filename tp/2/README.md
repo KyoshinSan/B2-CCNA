@@ -32,8 +32,8 @@ La seul différence c'est les adresses mac.
 
 ## II. NAT et services d'infra
 
-Le NAT a bien été mis en place, on peut :
-- Faire un <b>curl google.com</b> depuis la machine <b>router2</b><br /><br /> 
+Le NAT a bien été mis en place, on peut faire un <b>curl google.com</b> depuis :
+- La machine <b>router2</b><br /><br /> 
 `[soussou@router2 ~]$ curl google.com`<br />
 `<HTML><HEAD><meta http-equiv="content-type" content="text/html;charset=utf-8">`<br />
 `<TITLE>301 Moved</TITLE></HEAD><BODY>\'`<br />
@@ -41,4 +41,14 @@ Le NAT a bien été mis en place, on peut :
 `The document has moved`<br />
 `<A HREF="http://www.google.com/">here</A>.`<br />
 `</BODY></HTML>`<br />
-`[soussou@router2 ~]$`
+`[soussou@router2 ~]$`<br /><br />
+
+- La machine <b>client1</b><br /><br />
+`[soussou@client1 ~]$ curl google.com`<br />
+`<HTML><HEAD><meta http-equiv="content-type" content="text/html;charset=utf-8">`<br />
+`<TITLE>301 Moved</TITLE></HEAD><BODY>`<br />
+`<H1>301 Moved</H1>`<br />
+`The document has moved`<br />
+`<A HREF="http://www.google.com/">here</A>.`<br />
+`</BODY></HTML>`<br />
+`[soussou@client1 ~]$`<br /><br />
