@@ -168,9 +168,9 @@ La seul différence c'est les adresses mac.
 ## II. NAT et services d'infra
 ### 1. Mise en place du NAT
 
-Le NAT a bien été mis en place, on peut faire un <b>curl google.com</b> depuis la machine :
+Le NAT a bien été mis en place, on peut faire un <b>`curl google.com`</b> depuis la machine :
 
-• <b>`router1`</b>
+- <b>`router1`</b>
 
 ```
 [soussou@router1 ~]$ curl google.com
@@ -182,25 +182,35 @@ The document has moved
 </BODY></HTML>
 ```
 
-• <b>router2</b><br /><br /> 
-`[soussou@router2 ~]$ curl google.com`<br />
-`<HTML><HEAD><meta http-equiv="content-type" content="text/html;charset=utf-8">`<br />
-`<TITLE>301 Moved</TITLE></HEAD><BODY>\'`<br />
-`<H1>301 Moved</H1>\`<br />
-`The document has moved`<br />
-`<A HREF="http://www.google.com/">here</A>.`<br />
-`</BODY></HTML>`<br />
-`[soussou@router2 ~]$`<br /><br />
+- <b>`router2`</b>
 
-• <b>client1</b><br /><br />
-`[soussou@client1 ~]$ curl google.com`<br />
-`<HTML><HEAD><meta http-equiv="content-type" content="text/html;charset=utf-8">`<br />
-`<TITLE>301 Moved</TITLE></HEAD><BODY>`<br />
-`<H1>301 Moved</H1>`<br />
-`The document has moved`<br />
-`<A HREF="http://www.google.com/">here</A>.`<br />
-`</BODY></HTML>`<br />
-`[soussou@client1 ~]$`<br /><br />
+```
+[soussou@router2 ~]$ ip r s
+default via 10.2.12.2 dev enp0s8
+
+[soussou@router2 ~]$ curl google.com
+<HTML><HEAD><meta http-equiv="content-type" content="text/html;charset=utf-8">
+<TITLE>301 Moved</TITLE></HEAD><BODY>
+<H1>301 Moved</H1>
+The document has moved
+<A HREF="http://www.google.com/">here</A>.
+</BODY></HTML>
+```
+
+- <b>`client1`</b>
+
+```
+[soussou@client1 ~]$ ip r s
+default via 10.2.1.254 dev enp0s3
+
+[soussou@client1 ~]$ curl google.com
+<HTML><HEAD><meta http-equiv="content-type" content="text/html;charset=utf-8">
+<TITLE>301 Moved</TITLE></HEAD><BODY>
+<H1>301 Moved</H1>
+The document has moved
+<A HREF="http://www.google.com/">here</A>.
+</BODY></HTML>
+```
 
 ### 2. DHCP Server
 
