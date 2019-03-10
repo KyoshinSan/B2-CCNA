@@ -10,10 +10,10 @@
 
 On s'assure ques les interfaces fonctionnent :
 
-- client1
+- `client1`
 
 ```
-[jdinh@dhcp-server ~]$ ping -c 2 router1
+[jdinh@client1 ~]$ ping -c 2 router1
 PING router1 (10.2.1.254) 56(84) bytes of data.
 64 bytes from router1 (10.2.1.254): icmp_seq=1 ttl=64 time=0.560 ms
 64 bytes from router1 (10.2.1.254): icmp_seq=2 ttl=64 time=0.359 ms
@@ -23,12 +23,61 @@ PING router1 (10.2.1.254) 56(84) bytes of data.
 rtt min/avg/max/mdev = 0.359/0.459/0.560/0.102 ms
 ```
 
-- router1
+- `router1`
 
-- router2
+```
+[jdinh@router1 ~]$ ping -c 2 client1
+PING client1 (10.2.1.10) 56(84) bytes of data.
+64 bytes from client1 (10.2.1.10): icmp_seq=1 ttl=64 time=0.275 ms
+64 bytes from client1 (10.2.1.10): icmp_seq=2 ttl=64 time=0.725 ms
 
-- server1
+--- dhcp-server ping statistics ---
+2 packets transmitted, 2 received, 0% packet loss, time 999ms
+rtt min/avg/max/mdev = 0.275/0.500/0.725/0.225 ms
 
+[jdinh@router1 ~]$ ping -c 2 router2
+PING router2 (10.2.12.3) 56(84) bytes of data.
+64 bytes from router2 (10.2.12.3): icmp_seq=1 ttl=64 time=0.578 ms
+64 bytes from router2 (10.2.12.3): icmp_seq=2 ttl=64 time=0.520 ms
+
+--- router2 ping statistics ---
+2 packets transmitted, 2 received, 0% packet loss, time 1000ms
+rtt min/avg/max/mdev = 0.520/0.549/0.578/0.029 ms
+```
+
+- `router2`
+
+```
+[jdinh@router2 ~]$ ping -c 2 router1
+PING router1 (10.2.12.2) 56(84) bytes of data.
+64 bytes from router1 (10.2.12.2): icmp_seq=1 ttl=64 time=0.281 ms
+64 bytes from router1 (10.2.12.2): icmp_seq=2 ttl=64 time=0.251 ms
+
+--- router1 ping statistics ---
+2 packets transmitted, 2 received, 0% packet loss, time 1000ms
+rtt min/avg/max/mdev = 0.251/0.266/0.281/0.015 ms
+[jdinh@router2 ~]$ ping -c 2 server1
+PING server1 (10.2.2.10) 56(84) bytes of data.
+64 bytes from server1 (10.2.2.10): icmp_seq=1 ttl=64 time=0.782 ms
+64 bytes from server1 (10.2.2.10): icmp_seq=2 ttl=64 time=0.565 ms
+
+--- server1 ping statistics ---
+2 packets transmitted, 2 received, 0% packet loss, time 1000ms
+rtt min/avg/max/mdev = 0.565/0.673/0.782/0.111 ms
+```
+
+- `server1`
+
+```
+[jdinh@server1 ~]$ ping -c 2 router2
+PING router2 (10.2.2.254) 56(84) bytes of data.
+64 bytes from router2 (10.2.2.254): icmp_seq=1 ttl=64 time=0.394 ms
+64 bytes from router2 (10.2.2.254): icmp_seq=2 ttl=64 time=0.647 ms
+
+--- router2 ping statistics ---
+2 packets transmitted, 2 received, 0% packet loss, time 999ms
+rtt min/avg/max/mdev = 0.394/0.520/0.647/0.128 ms
+```
 
 ### 2. Routage statique
 
