@@ -8,9 +8,18 @@
 ### 1. Création des VMs et adressage ip
 #### Checklist IP VMs
 
-Les VMs sont bien configuré :
+On s'assure ques les interfaces fonctionnent :
 
-![Screenshot_1](https://github.com/KyoshinSan/B2-CCNA/blob/master/tp/2/Screenshot_1.png?raw=true)
+- client1
+
+
+
+- router1
+
+- router2
+
+- server1
+
 
 ### 2. Routage statique
 
