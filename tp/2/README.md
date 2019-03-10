@@ -117,6 +117,7 @@ rtt min/avg/max/mdev = 0.394/0.520/0.647/0.128 ms
 - ping `client1` et `server1` :
 
 	- ping `client1`
+	
 	```
 	[jdinh@client1 ~]$ ping -c 2 server1
 	PING server1 (10.2.2.10) 56(84) bytes of data.
@@ -129,6 +130,7 @@ rtt min/avg/max/mdev = 0.394/0.520/0.647/0.128 ms
 	```
 
 	- ping `server1`
+	
 	```
 	[jdinh@server1 ~]$ ping -c2 client1
 	PING client1 (10.2.1.10) 56(84) bytes of data.
@@ -143,6 +145,7 @@ rtt min/avg/max/mdev = 0.394/0.520/0.647/0.128 ms
 - ping `router1` et `server1` :
 
 	- `router1`
+	
 	```
 	[jdinh@router1 ~]$ ping -c 2 server1
 	PING server1 (10.2.2.10) 56(84) bytes of data.
@@ -150,7 +153,7 @@ rtt min/avg/max/mdev = 0.394/0.520/0.647/0.128 ms
 	--- server1 ping statistics ---
 	2 packets transmitted, 0 received, 100% packet loss, time 999ms
 	```
-c'est normal car `server1` ne possèdent aucun route vers `net12`
+	c'est normal car `server1` ne possèdent aucun route vers `net12`
   
 ### 3. Visualisation du routage avec Wireshark
   
