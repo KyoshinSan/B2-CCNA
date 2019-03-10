@@ -1,8 +1,8 @@
 # TP2 - Routage statique et services d'infra
 
-**Auteur :** DINH Jonathan & HERNANDEZ Theo & SEGHIR Souleimane
-**Date :** 25/02/2019
-**Desc :** Rendu du 2nd tp en CCNA
+**Auteur :** DINH Jonathan & HERNANDEZ Theo & SEGHIR Souleimane.
+**Date :** 25/02/2019.
+**Desc :** Rendu du 2nd tp en CCNA.
 
 ## I. Mise en place du lab
 ### 1. Création des VMs et adressage ip
