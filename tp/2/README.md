@@ -1,7 +1,7 @@
 # TP2 - Routage statique et services d'infra
 
-**Auteur :** DINH Jonathan & HERNANDEZ Theo & SEGHIR Souleimane <br />
-**Date :** 25/02/2019 <br />
+**Auteur :** DINH Jonathan & HERNANDEZ Theo & SEGHIR Souleimane
+**Date :** 25/02/2019
 **Desc :** Rendu du 2nd tp en CCNA
 
 ## I. Mise en place du lab
@@ -214,31 +214,35 @@ The document has moved
 
 ### 2. DHCP Server
 
-- Après avoir recyclé la machine <b>client1.net1.b2</b> en <b>dhcp-server.net1.b2</b> :<br />
-`soussou@dhcp-server ~]$ sudo systemctl start dhcpd`<br />
-`[soussou@dhcp-server ~]$ sudo systemctl status dhcpd`<br />
-`● dhcpd.service - DHCPv4 Server Daemon`<br />
-`   Loaded: loaded (/usr/lib/systemd/system/dhcpd.service; disabled; vendor preset: disabled)`<br />
-`   Active: active (running) since dim. 2019-03-10 00:14:18 CET; 1s ago`<br />
-`     Docs: man:dhcpd(8)`<br />
-`           man:dhcpd.conf(5)`<br />
-` Main PID: 3928 (dhcpd)`<br />
-`   Status: "Dispatching packets..."`<br />
-`   CGroup: /system.slice/dhcpd.service`<br />
-`           └─3928 /usr/sbin/dhcpd -f -cf /etc/dhcp/dhcpd.conf -user dhcpd -group dhcpd --no-pid`<br />
-`mars 10 00:14:18 dhcp-server.net1.b2 dhcpd[3928]: Not searching LDAP since ldap-server, ldap-port and ldap-base-dn were not s...g file`<br />
-`mars 10 00:14:18 dhcp-server.net1.b2 dhcpd[3928]: Internet Systems Consortium DHCP Server 4.2.5`<br />
-`mars 10 00:14:18 dhcp-server.net1.b2 dhcpd[3928]: Copyright 2004-2013 Internet Systems Consortium.`<br />
-`mars 10 00:14:18 dhcp-server.net1.b2 dhcpd[3928]: All rights reserved.`<br />
-`mars 10 00:14:18 dhcp-server.net1.b2 dhcpd[3928]: For info, please visit https://www.isc.org/software/dhcp/`<br />
-`mars 10 00:14:18 dhcp-server.net1.b2 dhcpd[3928]: Wrote 1 leases to leases file.`<br />
-`mars 10 00:14:18 dhcp-server.net1.b2 dhcpd[3928]: Listening on LPF/enp0s3/08:00:27:e3:87:b0/10.2.1.0/24`<br />
-`mars 10 00:14:18 dhcp-server.net1.b2 dhcpd[3928]: Sending on   LPF/enp0s3/08:00:27:e3:87:b0/10.2.1.0/24`<br />
-`mars 10 00:14:18 dhcp-server.net1.b2 dhcpd[3928]: Sending on   Socket/fallback/fallback-net`
-`mars 10 00:14:18 dhcp-server.net1.b2 systemd[1]: Started DHCPv4 Server Daemon.`<br />
-`Hint: Some lines were ellipsized, use -l to show in full.`<br />
-`[soussou@dhcp-server ~]$`<br />
--- > On a désormais un serveur DHCP qui va permettre aux <b>clients</b> de récupérer une ip et l'adresse de la passerelle directement dans net1.<br /><br />
+- Après avoir recyclé la machine <b>`client1.net1.b2`</b> en <b>`dhcp-server.net1.b2`</b> :
+
+```
+[soussou@dhcp-server ~]$ sudo systemctl start dhcpd
+[soussou@dhcp-server ~]$ sudo systemctl status dhcpd
+● dhcpd.service - DHCPv4 Server Daemon
+   Loaded: loaded (/usr/lib/systemd/system/dhcpd.service; disabled; vendor preset: disabled)
+   Active: active (running) since dim. 2019-03-10 00:14:18 CET; 1s ago
+     Docs: man:dhcpd(8)
+           man:dhcpd.conf(5)
+ Main PID: 3928 (dhcpd)
+   Status: "Dispatching packets..."
+   CGroup: /system.slice/dhcpd.service
+           └─3928 /usr/sbin/dhcpd -f -cf /etc/dhcp/dhcpd.conf -user dhcpd -group dhcpd --no-pid
+mars 10 00:14:18 dhcp-server.net1.b2 dhcpd[3928]: Not searching LDAP since ldap-server, ldap-port and ldap-base-dn were not s...g file
+mars 10 00:14:18 dhcp-server.net1.b2 dhcpd[3928]: Internet Systems Consortium DHCP Server 4.2.5
+mars 10 00:14:18 dhcp-server.net1.b2 dhcpd[3928]: Copyright 2004-2013 Internet Systems Consortium.
+mars 10 00:14:18 dhcp-server.net1.b2 dhcpd[3928]: All rights reserved.
+mars 10 00:14:18 dhcp-server.net1.b2 dhcpd[3928]: For info, please visit https://www.isc.org/software/dhcp/
+mars 10 00:14:18 dhcp-server.net1.b2 dhcpd[3928]: Wrote 1 leases to leases file.
+mars 10 00:14:18 dhcp-server.net1.b2 dhcpd[3928]: Listening on LPF/enp0s3/08:00:27:e3:87:b0/10.2.1.0/24
+mars 10 00:14:18 dhcp-server.net1.b2 dhcpd[3928]: Sending on   LPF/enp0s3/08:00:27:e3:87:b0/10.2.1.0/24
+mars 10 00:14:18 dhcp-server.net1.b2 dhcpd[3928]: Sending on   Socket/fallback/fallback-net
+mars 10 00:14:18 dhcp-server.net1.b2 systemd[1]: Started DHCPv4 Server Daemon.
+Hint: Some lines were ellipsized, use -l to show in full.
+```
+
+> On a désormais un serveur DHCP qui va permettre aux <b>clients</b> de récupérer une ip et l'adresse de la passerelle directement dans net1.
+
 - On configure une nouvelle machine nommée <b>client2</b> puis on s'assure que ça a bien fonctionné :<br />
 `[soussou@client2 ~]$ ip a`<br />
 `1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1000`<br />
