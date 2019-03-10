@@ -241,24 +241,25 @@ mars 10 00:14:18 dhcp-server.net1.b2 systemd[1]: Started DHCPv4 Server Daemon.
 Hint: Some lines were ellipsized, use -l to show in full.
 ```
 
-> On a désormais un serveur DHCP qui va permettre aux <b>clients</b> de récupérer une ip et l'adresse de la passerelle directement dans net1.
+=> On a désormais un serveur DHCP qui va permettre aux <b>clients</b> de récupérer une ip et l'adresse de la passerelle directement dans net1.
 
-- On configure une nouvelle machine nommée <b>client2</b> puis on s'assure que ça a bien fonctionné :<br />
-`[soussou@client2 ~]$ ip a`<br />
-`1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1000`<br />
-`    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00`<br />
-`    inet 127.0.0.1/8 scope host lo`<br />
-`       valid_lft forever preferred_lft forever`<br />
-`    inet6 ::1/128 scope host`<br />
-`       valid_lft forever preferred_lft forever`<br />
-`2: enp0s3: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc pfifo_fast state UP group default qlen 1000`<br />
-`    link/ether 08:00:27:cb:85:33 brd ff:ff:ff:ff:ff:ff`<br />
-`    inet 10.2.1.50/24 brd 10.2.1.255 scope global noprefixroute dynamic enp0s3`<br />
-`       valid_lft 572sec preferred_lft 572sec`<br />
-`    inet6 fe80::a00:27ff:fecb:8533/64 scope link`<br />
-`       valid_lft forever preferred_lft forever`<br />
-`[soussou@client2 ~]$`<br />
+- On configure une nouvelle machine nommée <b>`client2`</b> puis on s'assure que ça a bien fonctionné :
 
+```
+[soussou@client2 ~]$ ip a
+1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1000
+    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+    inet 127.0.0.1/8 scope host lo
+       valid_lft forever preferred_lft forever
+    inet6 ::1/128 scope host
+       valid_lft forever preferred_lft forever
+2: enp0s3: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc pfifo_fast state UP group default qlen 1000
+    link/ether 08:00:27:cb:85:33 brd ff:ff:ff:ff:ff:ff
+    inet 10.2.1.50/24 brd 10.2.1.255 scope global noprefixroute dynamic enp0s3
+       valid_lft 572sec preferred_lft 572sec
+    inet6 fe80::a00:27ff:fecb:8533/64 scope link
+       valid_lft forever preferred_lft forever
+```
 
 ### 3. NTP Server
 
