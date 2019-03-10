@@ -12,14 +12,16 @@ On s'assure ques les interfaces fonctionnent :
 
 - client1
 
-    [jdinh@dhcp-server ~]$ ping -c 2 router1
-    PING router1 (10.2.1.254) 56(84) bytes of data.
-    64 bytes from router1 (10.2.1.254): icmp_seq=1 ttl=64 time=0.560 ms
-    64 bytes from router1 (10.2.1.254): icmp_seq=2 ttl=64 time=0.359 ms
-    
-    --- router1 ping statistics ---
-    2 packets transmitted, 2 received, 0% packet loss, time 1001ms
-    rtt min/avg/max/mdev = 0.359/0.459/0.560/0.102 ms
+```
+[jdinh@dhcp-server ~]$ ping -c 2 router1
+PING router1 (10.2.1.254) 56(84) bytes of data.
+64 bytes from router1 (10.2.1.254): icmp_seq=1 ttl=64 time=0.560 ms
+64 bytes from router1 (10.2.1.254): icmp_seq=2 ttl=64 time=0.359 ms
+
+--- router1 ping statistics ---
+2 packets transmitted, 2 received, 0% packet loss, time 1001ms
+rtt min/avg/max/mdev = 0.359/0.459/0.560/0.102 ms
+```
 
 - router1
 
