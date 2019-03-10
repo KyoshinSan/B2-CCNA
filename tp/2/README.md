@@ -117,40 +117,40 @@ rtt min/avg/max/mdev = 0.394/0.520/0.647/0.128 ms
 - ping `client1` et `server1` :
 
 	- ping `client1`
- ```
- [jdinh@client1 ~]$ ping -c 2 server1
- PING server1 (10.2.2.10) 56(84) bytes of data.
- 64 bytes from server1 (10.2.2.10): icmp_seq=1 ttl=62 time=1.24 ms
- 64 bytes from server1 (10.2.2.10): icmp_seq=2 ttl=62 time=2.02 ms
- 
- --- server1 ping statistics ---
- 2 packets transmitted, 2 received, 0% packet loss, time 1002ms
- rtt min/avg/max/mdev = 1.245/1.634/2.024/0.391 ms
- ```
- 
- -- ping `server1`
- ```
- [jdinh@server1 ~]$ ping -c2 client1
- PING client1 (10.2.1.10) 56(84) bytes of data.
- 64 bytes from client1 (10.2.1.10): icmp_seq=1 ttl=62 time=1.10 ms
- 64 bytes from client1 (10.2.1.10): icmp_seq=2 ttl=62 time=2.01 ms
- 
- --- dhcp-server ping statistics ---
- 2 packets transmitted, 2 received, 0% packet loss, time 1001ms
- rtt min/avg/max/mdev = 1.103/1.561/2.019/0.458 ms
- ```
+	```
+	[jdinh@client1 ~]$ ping -c 2 server1
+	PING server1 (10.2.2.10) 56(84) bytes of data.
+	64 bytes from server1 (10.2.2.10): icmp_seq=1 ttl=62 time=1.24 ms
+	64 bytes from server1 (10.2.2.10): icmp_seq=2 ttl=62 time=2.02 ms
+	
+	--- server1 ping statistics ---
+	2 packets transmitted, 2 received, 0% packet loss, time 1002ms
+	rtt min/avg/max/mdev = 1.245/1.634/2.024/0.391 ms
+	```
+
+	- ping `server1`
+	```
+	[jdinh@server1 ~]$ ping -c2 client1
+	PING client1 (10.2.1.10) 56(84) bytes of data.
+	64 bytes from client1 (10.2.1.10): icmp_seq=1 ttl=62 time=1.10 ms
+	64 bytes from client1 (10.2.1.10): icmp_seq=2 ttl=62 time=2.01 ms
+	
+	--- dhcp-server ping statistics ---
+	2 packets transmitted, 2 received, 0% packet loss, time 1001ms
+	rtt min/avg/max/mdev = 1.103/1.561/2.019/0.458 ms
+	```
  
 - ping `router1` et `server1` :
 
- -- `router1`
- ```
- [jdinh@router1 ~]$ ping -c 2 server1
- PING server1 (10.2.2.10) 56(84) bytes of data.
- ^C
- --- server1 ping statistics ---
- 2 packets transmitted, 0 received, 100% packet loss, time 999ms
- ```
- c'est normal car `server1` ne possèdent aucun route vers `net12`
+	- `router1`
+	```
+	[jdinh@router1 ~]$ ping -c 2 server1
+	PING server1 (10.2.2.10) 56(84) bytes of data.
+	^C
+	--- server1 ping statistics ---
+	2 packets transmitted, 0 received, 100% packet loss, time 999ms
+	```
+c'est normal car `server1` ne possèdent aucun route vers `net12`
   
 ### 3. Visualisation du routage avec Wireshark
   
