@@ -259,6 +259,9 @@ Hint: Some lines were ellipsized, use -l to show in full.
        valid_lft 572sec preferred_lft 572sec
     inet6 fe80::a00:27ff:fecb:8533/64 scope link
        valid_lft forever preferred_lft forever
+       
+[soussou@client2 ~]$ ip r s
+default via 10.2.1.254 dev enp0s3 proto dhcp metric 100
 ```
 
 ### 3. NTP Server
