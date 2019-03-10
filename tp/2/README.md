@@ -56,6 +56,7 @@ PING router1 (10.2.12.2) 56(84) bytes of data.
 --- router1 ping statistics ---
 2 packets transmitted, 2 received, 0% packet loss, time 1000ms
 rtt min/avg/max/mdev = 0.251/0.266/0.281/0.015 ms
+
 [jdinh@router2 ~]$ ping -c 2 server1
 PING server1 (10.2.2.10) 56(84) bytes of data.
 64 bytes from server1 (10.2.2.10): icmp_seq=1 ttl=64 time=0.782 ms
@@ -81,11 +82,75 @@ rtt min/avg/max/mdev = 0.394/0.520/0.647/0.128 ms
 
 ### 2. Routage statique
 
-- ping `client1` et `server1` :<br />
-![Screenshot_2](https://github.com/KyoshinSan/B2-CCNA/blob/master/tp/2/Screenshot_2.png?raw=true)
+- `router1`
+
+```
+[jdinh@router1 ~]$ sudo ip route add 10.2.2.0/24 via 10.2.12.3 dev enp0s9
+[jdinh@router1 ~]$ ip r s
+10.2.2.0/24 via 10.2.12.3 dev enp0s9
+```
+
+- `router2`
+
+```
+[jdinh@router2 ~]$ sudo ip route add 10.2.1.0/24 via 10.2.12.2 dev enp0s8
+[jdinh@router2 ~]$ ip r s
+10.2.1.0/24 via 10.2.12.2 dev enp0s8
+```
+
+- `client1`
+
+```
+[jdinh@client1 ~]$ sudo ip route add 10.2.2.0/24 via 10.2.1.254 dev enp0s3
+[jdinh@client1 ~]$ ip r s
+10.2.2.0/24 via 10.2.1.254 dev enp0s3
+```
+
+- `server1`
+
+```
+[jdinh@server1 ~]$ sudo ip route add 10.2.1.0/24 via 10.2.2.254 dev enp0s3
+[jdinh@server1 ~]$ ip r s
+10.2.1.0/24 via 10.2.2.254 dev enp0s3
+```
+
+- ping `client1` et `server1` :
+
+ - ping `client1`
+ ```
+ [jdinh@client1 ~]$ ping -c 2 server1
+ PING server1 (10.2.2.10) 56(84) bytes of data.
+ 64 bytes from server1 (10.2.2.10): icmp_seq=1 ttl=62 time=1.24 ms
+ 64 bytes from server1 (10.2.2.10): icmp_seq=2 ttl=62 time=2.02 ms
+ 
+ --- server1 ping statistics ---
+ 2 packets transmitted, 2 received, 0% packet loss, time 1002ms
+ rtt min/avg/max/mdev = 1.245/1.634/2.024/0.391 ms
+ ```
+ 
+  - ping `server1`
+ ```
+ [jdinh@server1 ~]$ ping -c2 client1
+ PING client1 (10.2.1.10) 56(84) bytes of data.
+ 64 bytes from client1 (10.2.1.10): icmp_seq=1 ttl=62 time=1.10 ms
+ 64 bytes from client1 (10.2.1.10): icmp_seq=2 ttl=62 time=2.01 ms
+ 
+ --- dhcp-server ping statistics ---
+ 2 packets transmitted, 2 received, 0% packet loss, time 1001ms
+ rtt min/avg/max/mdev = 1.103/1.561/2.019/0.458 ms
+ ```
  
 - ping `router1` et `server1` :
-  c'est normal car `server1` ne possèdent aucun route vers `net12`
+
+ - `router1`
+ ```
+ [jdinh@router1 ~]$ ping -c 2 server1
+ PING server1 (10.2.2.10) 56(84) bytes of data.
+ ^C
+ --- server1 ping statistics ---
+ 2 packets transmitted, 0 received, 100% packet loss, time 999ms
+ ```
+ c'est normal car `server1` ne possèdent aucun route vers `net12`
   
 ### 3. Visualisation du routage avec Wireshark
   
