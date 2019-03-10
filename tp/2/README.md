@@ -79,7 +79,7 @@ PING router2 (10.2.2.254) 56(84) bytes of data.
 2 packets transmitted, 2 received, 0% packet loss, time 999ms
 rtt min/avg/max/mdev = 0.394/0.520/0.647/0.128 ms
 ```
-
+*****
 ### 2. Routage statique
 
 - `router1`
@@ -154,7 +154,7 @@ rtt min/avg/max/mdev = 0.394/0.520/0.647/0.128 ms
 	2 packets transmitted, 0 received, 100% packet loss, time 999ms
 	```
 	c'est normal car `server1` ne possèdent aucun route vers `net12`
-  
+*****
 ### 3. Visualisation du routage avec Wireshark
   
 - Capture 1 (net12) :
@@ -211,7 +211,7 @@ The document has moved
 <A HREF="http://www.google.com/">here</A>.
 </BODY></HTML>
 ```
-
+*****
 ### 2. DHCP Server
 
 - Après avoir recyclé la machine <b>`client1.net1.b2`</b> en <b>`dhcp-server.net1.b2`</b> :
@@ -263,33 +263,86 @@ Hint: Some lines were ellipsized, use -l to show in full.
 [soussou@client2 ~]$ ip r s
 default via 10.2.1.254 dev enp0s3 proto dhcp metric 100
 ```
-
+*****
 ### 3. NTP Server
 
-- Une fois <b>chrony</b> mis en place :<br /><br />
-`[soussou@router1 ~]$ chronyc sources`<br />
-`210 Number of sources = 4`<br />
-`MS Name/IP address         Stratum Poll Reach LastRx Last sample`<br />
-`===============================================================================`<br />
-`^? ntp-2.arkena.net              2   6     1     6  -943.7s[-943.7s] +/-   27ms`<br />
-`^? 30-251-47-212.rev.cloud.>     2   6     1     7  -943.7s[-943.7s] +/-   60ms`<br />
-`^? y.ns.gin.ntt.net              2   6     1     6  -943.7s[-943.7s] +/-  106ms`<br />
-`^? ks3370497.kimsufi.com         2   6     1     6  -943.6s[-943.6s] +/-   57ms`<br />
-`[soussou@router1 ~]$ chronyc tracking`<br />
-`Reference ID    : 7F7F0101 ()`<br />
-`Stratum         : 10`<br />
-`Ref time (UTC)  : Mon Mar 04 14:55:33 2019`<br />
-`System time     : 0.000000000 seconds fast of NTP time`<br />
-`Last offset     : +0.000000000 seconds`<br />
-`RMS offset      : 0.000000000 seconds`<br />
-`Frequency       : 0.381 ppm fast`<br />
-`Residual freq   : +0.000 ppm`<br />
-`Skew            : 0.000 ppm`<br />
-`Root delay      : 0.000000000 seconds`<br />
-`Root dispersion : 0.000000000 seconds`<br />
-`Update interval : 0.0 seconds`<br />
-`Leap status     : Normal`<br />
-`[soussou@router1 ~]$`<br />
+- Une fois <b>`chrony`</b> mis en place :
 
+	- `router1`
+	
+	```
+	[jdinh@router1 ~]$ chronyc sources
+	210 Number of sources = 4
+	MS Name/IP address         Stratum Poll Reach LastRx Last sample
+	===============================================================================
+	^? ns3.stoneartprod.xyz          2   6     1     7   +226us[ +226us] +/-   52ms
+	^? eva.aplu.fr                   2   6     1     6  +1768us[+1768us] +/-   69ms
+	^? ks312903.kimsufi.com          3   6     1     6   -871us[ -871us] +/-   65ms
+	^? v.bsod.fr                     2   6     1     8    -32ms[  -32ms] +/-   90ms
+	
+	[jdinh@router1 ~]$ chronyc tracking
+	Reference ID    : 7F7F0101 ()
+	Stratum         : 10
+	Ref time (UTC)  : Sun Mar 10 15:57:53 2019
+	System time     : 0.000000000 seconds fast of NTP time
+	Last offset     : +0.000000000 seconds
+	RMS offset      : 0.000000000 seconds
+	Frequency       : 1.837 ppm fast
+	Residual freq   : +0.000 ppm
+	Skew            : 0.000 ppm
+	Root delay      : 0.000000000 seconds
+	Root dispersion : 0.000000000 seconds
+	Update interval : 0.0 seconds
+	Leap status     : Normal
+	```
 
+	- `router2`
+	
+	```
+	[jdinh@router2 ~]$ chronyc sources
+	210 Number of sources = 0
+	MS Name/IP address         Stratum Poll Reach LastRx Last sample
+	===============================================================================
 
+	[jdinh@router2 ~]$ chronyc tracking
+	Reference ID    : 7F7F0101 ()
+	Stratum         : 10
+	Ref time (UTC)  : Sun Mar 10 16:01:29 2019
+	System time     : 0.000000000 seconds fast of NTP time
+	Last offset     : +0.000000000 seconds
+	RMS offset      : 0.000000000 seconds
+	Frequency       : 0.000 ppm slow
+	Residual freq   : +0.000 ppm
+	Skew            : 0.000 ppm
+	Root delay      : 0.000000000 seconds
+	Root dispersion : 0.000000000 seconds
+	Update interval : 0.0 seconds
+	Leap status     : Normal
+	```
+
+	- `server1`
+	
+	```
+	[jdinh@server1 ~]$ chronyc sources
+	210 Number of sources = 0
+	MS Name/IP address         Stratum Poll Reach LastRx Last sample
+	===============================================================================
+
+	[jdinh@server1 ~]$ chronyc tracking
+	Reference ID    : 7F7F0101 ()
+	Stratum         : 10
+	Ref time (UTC)  : Sun Mar 10 16:01:46 2019
+	System time     : 0.000000000 seconds fast of NTP time
+	Last offset     : +0.000000000 seconds
+	RMS offset      : 0.000000000 seconds
+	Frequency       : 0.000 ppm slow
+	Residual freq   : +0.000 ppm
+	Skew            : 0.000 ppm
+	Root delay      : 0.000000000 seconds
+	Root dispersion : 0.000000000 seconds
+	Update interval : 0.0 seconds
+	Leap status     : Normal
+	```
+
+*****
+### 4. Web Server
