@@ -145,3 +145,87 @@
   11  * * client3 (10.1.1.3)  3005.788 ms !H
   ```
   
+## II. Manipulation simple de routeurs
+### 1. Mise en place du lab
+
+- `client2`:
+
+```
+[jdinh@client2 ~]$ ping 10.2.1.254 -c 2
+PING 10.2.1.254 (10.2.1.254) 56(84) bytes of data.
+64 bytes from 10.2.1.254: icmp_seq=1 ttl=255 time=13.1 ms
+64 bytes from 10.2.1.254: icmp_seq=2 ttl=255 time=6.18 ms
+
+--- 10.2.1.254 ping statistics ---
+2 packets transmitted, 2 received, 0% packet loss, time 1002ms
+rtt min/avg/max/mdev = 6.180/9.651/13.123/3.472 ms
+```
+
+- `server1`:
+
+```
+[jdinh@server1 ~]$ ping 10.2.2.254 -c 2
+PING 10.2.2.254 (10.2.2.254) 56(84) bytes of data.
+64 bytes from 10.2.2.254: icmp_seq=1 ttl=255 time=11.3 ms
+64 bytes from 10.2.2.254: icmp_seq=2 ttl=255 time=7.68 ms
+
+--- 10.2.2.254 ping statistics ---
+2 packets transmitted, 2 received, 0% packet loss, time 1002ms
+rtt min/avg/max/mdev = 7.684/9.536/11.389/1.855 ms
+```
+
+- `router1`:
+
+```
+R1#ping 10.2.1.11
+
+Type escape sequence to abort.
+Sending 5, 100-byte ICMP Echos to 10.2.1.11, timeout is 2 seconds:
+!!!!!
+Success rate is 100 percent (5/5), round-trip min/avg/max = 8/10/16 ms
+```
+
+- `router2`:
+
+```
+R2#ping 10.2.2.10
+
+Type escape sequence to abort.
+Sending 5, 100-byte ICMP Echos to 10.2.2.10, timeout is 2 seconds:
+!!!!!
+Success rate is 100 percent (5/5), round-trip min/avg/max = 1/9/16 ms
+```
+
+### 2. Configuration du routage statique
+
+- `client2` :
+
+```
+[jdinh@client2 ~]$ ping 10.2.2.10 -c 2
+PING 10.2.2.10 (10.2.2.10) 56(84) bytes of data.
+64 bytes from 10.2.2.10: icmp_seq=1 ttl=62 time=24.8 ms
+64 bytes from 10.2.2.10: icmp_seq=2 ttl=62 time=29.2 ms
+
+--- 10.2.2.10 ping statistics ---
+2 packets transmitted, 2 received, 0% packet loss, time 1003ms
+rtt min/avg/max/mdev = 24.884/27.067/29.250/2.183 ms
+```
+
+- `server1` :
+
+```
+[jdinh@server1 ~]$ ping 10.2.1.11 -c 2
+PING 10.2.1.11 (10.2.1.11) 56(84) bytes of data.
+64 bytes from 10.2.1.11: icmp_seq=1 ttl=62 time=23.6 ms
+64 bytes from 10.2.1.11: icmp_seq=2 ttl=62 time=31.5 ms
+
+--- 10.2.1.11 ping statistics ---
+2 packets transmitted, 2 received, 0% packet loss, time 1002ms
+rtt min/avg/max/mdev = 23.642/27.607/31.572/3.965 ms
+```
+
+- Proposition de topologie :
+
+On rajoute un switch entre `client1` et `client2`
+
+![Screenshot_1](url)
