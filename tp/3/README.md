@@ -228,4 +228,4 @@ rtt min/avg/max/mdev = 23.642/27.607/31.572/3.965 ms
 
 On rajoute un switch entre `client1` et `client2`
 
-![Screenshot_1](url)
+![Screenshot_1](https://raw.githubusercontent.com/KyoshinSan/B2-CCNA/master/tp/3/Screenshot_1.png)
