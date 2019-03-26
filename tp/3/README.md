@@ -436,7 +436,7 @@ PING server1 (10.3.102.10) 56(84) bytes of data.
 rtt min/avg/max/mdev = 77.154/81.201/85.249/4.057 ms
 ```
 
-- `serveur1` :
+- `server1` :
 
 ```
 [jdinh@server1 ~]$ ping client1 -c 2
