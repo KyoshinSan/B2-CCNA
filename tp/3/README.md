@@ -229,3 +229,222 @@ rtt min/avg/max/mdev = 23.642/27.607/31.572/3.965 ms
 On rajoute un switch entre `client1` et `client2`
 
 ![Screenshot_1](https://raw.githubusercontent.com/KyoshinSan/B2-CCNA/master/tp/3/Screenshot_1.png)
+
+## III. Mise en place d'OSPF
+### 1. Mise en place du lab
+
+- `client1` :
+
+```
+[jdinh@client1 ~]$ ping 10.3.101.254 -c 2
+PING 10.3.101.254 (10.3.101.254) 56(84) bytes of data.
+64 bytes from 10.3.101.254: icmp_seq=1 ttl=255 time=33.6 ms
+64 bytes from 10.3.101.254: icmp_seq=2 ttl=255 time=13.5 ms
+
+--- 10.3.101.254 ping statistics ---
+2 packets transmitted, 2 received, 0% packet loss, time 1002ms
+rtt min/avg/max/mdev = 13.521/23.606/33.691/10.085 ms
+```
+
+- `server1` :
+
+```
+[jdinh@server1 ~]$ ping 10.3.102.254 -c 2
+PING 10.3.102.254 (10.3.102.254) 56(84) bytes of data.
+64 bytes from 10.3.102.254: icmp_seq=1 ttl=255 time=40.9 ms
+64 bytes from 10.3.102.254: icmp_seq=2 ttl=255 time=12.4 ms
+
+--- 10.3.102.254 ping statistics ---
+2 packets transmitted, 2 received, 0% packet loss, time 1002ms
+rtt min/avg/max/mdev = 12.477/26.735/40.994/14.259 ms
+```
+
+- `router1` :
+
+```
+R1#ping 10.3.102.10
+
+Type escape sequence to abort.
+Sending 5, 100-byte ICMP Echos to 10.3.102.10, timeout is 2 seconds:
+!!!!!
+Success rate is 100 percent (5/5), round-trip min/avg/max = 8/11/16 ms
+
+R1#ping 10.3.100.2
+
+Type escape sequence to abort.
+Sending 5, 100-byte ICMP Echos to 10.3.100.2, timeout is 2 seconds:
+!!!!!
+Success rate is 100 percent (5/5), round-trip min/avg/max = 12/20/32 ms
+
+R1#ping 10.3.100.21
+
+Type escape sequence to abort.
+Sending 5, 100-byte ICMP Echos to 10.3.100.21, timeout is 2 seconds:
+!!!!!
+Success rate is 100 percent (5/5), round-trip min/avg/max = 12/20/32 ms
+```
+
+- `router2` :
+
+```
+R2#ping 10.3.100.1
+
+Type escape sequence to abort.
+Sending 5, 100-byte ICMP Echos to 10.3.100.1, timeout is 2 seconds:
+!!!!!
+Success rate is 100 percent (5/5), round-trip min/avg/max = 12/27/44 ms
+
+R2#ping 10.3.100.6
+
+Type escape sequence to abort.
+Sending 5, 100-byte ICMP Echos to 10.3.100.6, timeout is 2 seconds:
+!!!!!
+Success rate is 100 percent (5/5), round-trip min/avg/max = 12/23/32 ms
+```
+
+- `router3` :
+
+```
+R3#ping 10.3.100.5
+
+Type escape sequence to abort.
+Sending 5, 100-byte ICMP Echos to 10.3.100.5, timeout is 2 seconds:
+!!!!!
+Success rate is 100 percent (5/5), round-trip min/avg/max = 8/17/28 ms
+
+R3#ping 10.3.100.10
+
+Type escape sequence to abort.
+Sending 5, 100-byte ICMP Echos to 10.3.100.10, timeout is 2 seconds:
+!!!!!
+Success rate is 100 percent (5/5), round-trip min/avg/max = 16/23/36 ms
+```
+
+- `router4` :
+
+```
+R4#ping 10.3.100.9
+
+Type escape sequence to abort.
+Sending 5, 100-byte ICMP Echos to 10.3.100.9, timeout is 2 seconds:
+!!!!!
+Success rate is 100 percent (5/5), round-trip min/avg/max = 16/31/76 ms
+
+R4#ping 10.3.101.10
+
+Type escape sequence to abort.
+Sending 5, 100-byte ICMP Echos to 10.3.101.10, timeout is 2 seconds:
+!!!!!
+Success rate is 100 percent (5/5), round-trip min/avg/max = 4/9/20 ms
+
+R4#ping 10.3.100.14
+
+Type escape sequence to abort.
+Sending 5, 100-byte ICMP Echos to 10.3.100.14, timeout is 2 seconds:
+!!!!!
+Success rate is 100 percent (5/5), round-trip min/avg/max = 12/25/44 ms
+```
+
+- `router5` :
+
+```
+R5#ping 10.3.100.13
+
+Type escape sequence to abort.
+Sending 5, 100-byte ICMP Echos to 10.3.100.13, timeout is 2 seconds:
+!!!!!
+Success rate is 100 percent (5/5), round-trip min/avg/max = 12/32/72 ms
+
+R5#ping 10.3.100.18
+
+Type escape sequence to abort.
+Sending 5, 100-byte ICMP Echos to 10.3.100.18, timeout is 2 seconds:
+!!!!!
+Success rate is 100 percent (5/5), round-trip min/avg/max = 8/15/36 ms
+```
+
+- `router6` :
+
+```
+R6#ping 10.3.100.17
+
+Type escape sequence to abort.
+Sending 5, 100-byte ICMP Echos to 10.3.100.17, timeout is 2 seconds:
+!!!!!
+Success rate is 100 percent (5/5), round-trip min/avg/max = 4/12/16 ms
+
+R6#ping 10.3.100.22
+
+Type escape sequence to abort.
+Sending 5, 100-byte ICMP Echos to 10.3.100.22, timeout is 2 seconds:
+!!!!!
+Success rate is 100 percent (5/5), round-trip min/avg/max = 4/14/24 ms
+```
+
+### 2. Configuration de OSPF
+
+- `router1`: 
+
+```
+R1#ping 10.3.100.2
+
+Type escape sequence to abort.
+Sending 5, 100-byte ICMP Echos to 10.3.100.2, timeout is 2 seconds:
+!!!!!
+Success rate is 100 percent (5/5), round-trip min/avg/max = 16/20/24 ms
+
+R1#ping 10.3.100.6
+
+Type escape sequence to abort.
+Sending 5, 100-byte ICMP Echos to 10.3.100.6, timeout is 2 seconds:
+!!!!!
+Success rate is 100 percent (5/5), round-trip min/avg/max = 36/41/44 ms
+
+R1#ping 10.3.100.10
+
+Type escape sequence to abort.
+Sending 5, 100-byte ICMP Echos to 10.3.100.10, timeout is 2 seconds:
+!!!!!
+Success rate is 100 percent (5/5), round-trip min/avg/max = 52/68/108 ms
+
+R1#ping 10.3.100.14
+
+Type escape sequence to abort.
+Sending 5, 100-byte ICMP Echos to 10.3.100.14, timeout is 2 seconds:
+!!!!!
+Success rate is 100 percent (5/5), round-trip min/avg/max = 40/43/44 ms
+
+R1#ping 10.3.100.18
+
+Type escape sequence to abort.
+Sending 5, 100-byte ICMP Echos to 10.3.100.18, timeout is 2 seconds:
+!!!!!
+Success rate is 100 percent (5/5), round-trip min/avg/max = 20/20/24 ms
+
+```
+
+- `client1` :
+
+```
+[jdinh@client1 ~]$ ping server1 -c 2
+PING server1 (10.3.102.10) 56(84) bytes of data.
+64 bytes from server1 (10.3.102.10): icmp_seq=1 ttl=60 time=77.1 ms
+64 bytes from server1 (10.3.102.10): icmp_seq=2 ttl=60 time=85.2 ms
+
+--- server1 ping statistics ---
+2 packets transmitted, 2 received, 0% packet loss, time 1003ms
+rtt min/avg/max/mdev = 77.154/81.201/85.249/4.057 ms
+```
+
+- `serveur1` :
+
+```
+[jdinh@server1 ~]$ ping client1 -c 2
+PING client1 (10.3.101.10) 56(84) bytes of data.
+64 bytes from client1 (10.3.101.10): icmp_seq=1 ttl=60 time=87.7 ms
+64 bytes from client1 (10.3.101.10): icmp_seq=2 ttl=60 time=78.9 ms
+
+--- client1 ping statistics ---
+2 packets transmitted, 2 received, 0% packet loss, time 1002ms
+rtt min/avg/max/mdev = 78.925/83.354/87.783/4.429 ms
+```
