@@ -452,10 +452,26 @@ rtt min/avg/max/mdev = 78.925/83.354/87.783/4.429 ms
 ## IV. Lab Final
 ### Mise en place du lab
 
-> Topologie
+- Topologie
+> le router2 a aussi pour role DHCP pour les clients 4 et 5
 
 ![Image de la topologie](https://github.com/KyoshinSan/B2-CCNA/blob/master/tp/3/pic/topologie-lab-4.png)
 
-> Tableau d'adressage
+-  Tableau d'adressage
 
-> Vérification
+| Hosts	| 10.4.1.0/30	| 10.4.1.4/30 |	10.4.1.8/30 |	10.4.10.0/24 | 10.4.30.0/24 |	10.4.40.0/24 |
+| ----- | ----------- | ----------- | ----------- | ------------ | ------------ | ------------ |
+| client1.lab4.tp3 | | X | X |	X |	10.33.10.1/24	| X |	X |
+client2.lab4.tp3	X	X	X	10.33.10.2/24	X	X
+client3.lab4.tp3	X	X	X	10.33.10.3/24	X	X
+client4.lab4.tp3	X	X	X	X	X	10.33.40.101/24
+client5.lab4.tp3	X	X	X	X	X	10.33.40.102/24
+server1.lab4.tp3	X	X	X	X	10.33.30.1/24	X
+server2.lab4.tp3	X	X	X	X	10.33.30.2/24	X
+router1.lab4.tp3	10.33.1.1/30	X	10.33.1.10/30	X	X	X
+router2.lab4.tp3	10.33.1.2/30	10.33.1.5/30	X	X	X	10.33.40.254/24
+router3.lab4.tp3	X	10.33.1.6/30	10.33.1.9/30	10.33.10.254/24	10.33.30.254/24	X
+
+
+
+-  Vérification
