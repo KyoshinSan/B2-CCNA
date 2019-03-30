@@ -448,3 +448,14 @@ PING client1 (10.3.101.10) 56(84) bytes of data.
 2 packets transmitted, 2 received, 0% packet loss, time 1002ms
 rtt min/avg/max/mdev = 78.925/83.354/87.783/4.429 ms
 ```
+
+## IV. Lab Final
+### Mise en place du lab
+
+> Topologie
+
+![]Topologie
+
+> Tableau d'adressage
+
+> Vérification
