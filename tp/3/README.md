@@ -454,7 +454,7 @@ rtt min/avg/max/mdev = 78.925/83.354/87.783/4.429 ms
 
 > Topologie
 
-![]Topologie
+![Image de la topologie](https://github.com/KyoshinSan/B2-CCNA/blob/master/tp/3/pic/topologie-lab-4.png)
 
 > Tableau d'adressage
 
