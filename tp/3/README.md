@@ -563,3 +563,50 @@ rtt min/avg/max/mdev = 78.925/83.354/87.783/4.429 ms
 
 - [x] les routeurs peuvent discuter entre eux (de point à point):
 
+    - `router1`
+  ```
+  R1#ping 10.4.1.2
+  
+  Type escape sequence to abort.
+  Sending 5, 100-byte ICMP Echos to 10.4.1.2, timeout is 2 seconds:
+  .!!!!
+  Success rate is 80 percent (4/5), round-trip min/avg/max = 16/25/32 ms
+  R1#ping 10.4.1.9
+  
+  Type escape sequence to abort.
+  Sending 5, 100-byte ICMP Echos to 10.4.1.9, timeout is 2 seconds:
+  .!!!!
+  Success rate is 80 percent (4/5), round-trip min/avg/max = 16/22/24 ms
+  ```
+  
+    - `router2`
+  ```
+  R2#ping 10.4.1.1
+  
+  Type escape sequence to abort.
+  Sending 5, 100-byte ICMP Echos to 10.4.1.1, timeout is 2 seconds:
+  !!!!!
+  Success rate is 100 percent (5/5), round-trip min/avg/max = 12/18/32 ms
+  R2#ping 10.4.1.6
+  
+  Type escape sequence to abort.
+  Sending 5, 100-byte ICMP Echos to 10.4.1.6, timeout is 2 seconds:
+  .!!!!
+  Success rate is 80 percent (4/5), round-trip min/avg/max = 12/17/20 ms
+  ```
+  
+    - `router3`
+  ```
+  R3#ping 10.4.1.5
+  
+  Type escape sequence to abort.
+  Sending 5, 100-byte ICMP Echos to 10.4.1.5, timeout is 2 seconds:
+  !!!!!
+  Success rate is 100 percent (5/5), round-trip min/avg/max = 8/25/60 ms
+  R3#ping 10.4.1.10
+  
+  Type escape sequence to abort.
+  Sending 5, 100-byte ICMP Echos to 10.4.1.10, timeout is 2 seconds:
+  !!!!!
+  Success rate is 100 percent (5/5), round-trip min/avg/max = 4/17/44 ms
+  ```
