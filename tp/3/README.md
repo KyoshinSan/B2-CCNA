@@ -478,7 +478,7 @@ rtt min/avg/max/mdev = 78.925/83.354/87.783/4.429 ms
 
 - [x] tous les serveurs peuvent se ping entre eux :
 
-    - `server1`<br />
+    - `server1`
   ```
   [jdinh@server1 ~]$ ping server2 -c 2
   PING server2 (10.4.30.2) 56(84) bytes of data.
@@ -489,7 +489,7 @@ rtt min/avg/max/mdev = 78.925/83.354/87.783/4.429 ms
   2 packets transmitted, 2 received, 0% packet loss, time 1002ms
   rtt min/avg/max/mdev = 1.680/4.142/6.604/2.462 ms
   ```
-  - `server2` <br />
+    - `server2`
   ```
   [jdinh@server2 ~]$ ping server1 -c 2
   PING server1 (10.4.30.1) 56(84) bytes of data.
@@ -500,3 +500,66 @@ rtt min/avg/max/mdev = 78.925/83.354/87.783/4.429 ms
   2 packets transmitted, 2 received, 0% packet loss, time 1001ms
   rtt min/avg/max/mdev = 1.812/2.702/3.593/0.892 ms
   ```
+  
+- [x] les clients 1, 2, 3 peuvent se ping entre eux :
+
+    - `client1`
+  ```
+  [jdinh@client1 ~]$ ping client2 -c 2
+  PING client2 (10.4.10.2) 56(84) bytes of data.
+  64 bytes from client2 (10.4.10.2): icmp_seq=1 ttl=64 time=6.24 ms
+  64 bytes from client2 (10.4.10.2): icmp_seq=2 ttl=64 time=4.70 ms
+  
+  --- client2 ping statistics ---
+  2 packets transmitted, 2 received, 0% packet loss, time 1002ms
+  rtt min/avg/max/mdev = 4.703/5.473/6.244/0.774 ms
+  [jdinh@client1 ~]$ ping client3 -c 2
+  PING client3 (10.4.10.3) 56(84) bytes of data.
+  64 bytes from client3 (10.4.10.3): icmp_seq=1 ttl=64 time=8.41 ms
+  64 bytes from client3 (10.4.10.3): icmp_seq=2 ttl=64 time=3.93 ms
+  
+  --- client3 ping statistics ---
+  2 packets transmitted, 2 received, 0% packet loss, time 1001ms
+  rtt min/avg/max/mdev = 3.936/6.173/8.410/2.237 ms
+  ```
+    - `client2`
+  ```
+  [jdinh@client2 ~]$ ping client1 -c 2
+  PING client1 (10.4.10.1) 56(84) bytes of data.
+  64 bytes from client1 (10.4.10.1): icmp_seq=1 ttl=64 time=1.53 ms
+  64 bytes from client1 (10.4.10.1): icmp_seq=2 ttl=64 time=3.35 ms
+  
+  --- client1 ping statistics ---
+  2 packets transmitted, 2 received, 0% packet loss, time 1001ms
+  rtt min/avg/max/mdev = 1.531/2.444/3.357/0.913 ms
+  [jdinh@client2 ~]$ ping client3 -c 2
+  PING client3 (10.4.10.3) 56(84) bytes of data.
+  64 bytes from client3 (10.4.10.3): icmp_seq=1 ttl=64 time=6.49 ms
+  64 bytes from client3 (10.4.10.3): icmp_seq=2 ttl=64 time=3.54 ms
+  
+  --- client3 ping statistics ---
+  2 packets transmitted, 2 received, 0% packet loss, time 1002ms
+  rtt min/avg/max/mdev = 3.541/5.018/6.496/1.479 ms
+  ```
+    - `client3`
+  ```
+  [jdinh@client3 ~]$ ping client1 -c 2
+  PING client1 (10.4.10.1) 56(84) bytes of data.
+  64 bytes from client1 (10.4.10.1): icmp_seq=1 ttl=64 time=1.69 ms
+  64 bytes from client1 (10.4.10.1): icmp_seq=2 ttl=64 time=3.63 ms
+  
+  --- client1 ping statistics ---
+  2 packets transmitted, 2 received, 0% packet loss, time 1002ms
+  rtt min/avg/max/mdev = 1.698/2.665/3.632/0.967 ms
+  [jdinh@client3 ~]$ ping client2 -c 2
+  PING client2 (10.4.10.2) 56(84) bytes of data.
+  64 bytes from client2 (10.4.10.2): icmp_seq=1 ttl=64 time=1.59 ms
+  64 bytes from client2 (10.4.10.2): icmp_seq=2 ttl=64 time=3.22 ms
+  
+  --- client2 ping statistics ---
+  2 packets transmitted, 2 received, 0% packet loss, time 1002ms
+  rtt min/avg/max/mdev = 1.593/2.408/3.223/0.815 ms
+  ```
+
+- [x] les routeurs peuvent discuter entre eux (de point à point):
+
