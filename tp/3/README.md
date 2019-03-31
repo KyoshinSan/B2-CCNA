@@ -1306,7 +1306,7 @@ PING client1 (10.4.10.1) 56(84) bytes of data.
 2 packets transmitted, 2 received, 0% packet loss, time 1002ms
 rtt min/avg/max/mdev = 27.776/31.183/34.590/3.407 ms
 
-# il peut joindre le reseau 10.4.10.0/24
+# il peut joindre le reseau 10.4.30.0/24
 [jdinh@client4 ~]$ ping server1 -c 2
 PING server1 (10.4.30.1) 56(84) bytes of data.
 64 bytes from server1 (10.4.30.1): icmp_seq=1 ttl=62 time=30.9 ms
