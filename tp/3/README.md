@@ -827,6 +827,43 @@ On s’attaque maintenant sur la configuration de VLANs sur les switch 1, 2, 3 e
 
 Ici entre `SW1` et `SW2` les ports sont en mode `trunk`.
 
+- `switch2`
+
+Création du VLAN 10.
+
+```
+SW2# conf t
+SW2(config)# vlan 10
+SW2(config-vlan)# name sw-vlan10
+SW2(config-vlan)# exit
+```
+
+On assigne une interface pour donner accès au VLAN.
+
+  - `Client 2`
+```
+SW2(config)# interface Ethernet 0/1
+SW2(config-if)# switchport mode access
+SW2(config-if)# switchport access vlan 10
+```
+Création du VLAN 20.
+
+```
+SW2# conf t
+SW2(config)# vlan 20
+SW2(config-vlan)# name sw-vlan20
+SW2(config-vlan)# exit
+```
+
+  - `Client 3`
+```
+SW2(config)# interface Ethernet 0/2
+SW2(config-if)# switchport mode access
+SW2(config-if)# switchport access vlan 20
+```
+
+Création du VLAN 40.
+
 - `switch4`
 
 Création du VLAN.
