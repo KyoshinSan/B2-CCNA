@@ -735,6 +735,7 @@ On s’attaque maintenant sur la configuration de VLANs sur les switch 1, 2, 3 e
 Ici entre `SW1` et `SW2` les ports sont en mode `trunk`.
 
 - `switch4`
+
 Création du VLAN.
 
 ```
