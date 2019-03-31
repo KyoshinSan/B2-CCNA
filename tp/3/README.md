@@ -656,20 +656,22 @@ R2(config)#router ospf 1
 R2(config-router)#router-id 2.2.2.2
 R2(config-router)#network 10.4.1.0 0.0.0.3 area 0
 R2(config-router)#network 10.4.1.4 0.0.0.3 area 0
+R2(config-router)#network 10.4.40.0 0.0.0.255 area 2
 R2#sh ip pro
 Routing Protocol is "ospf 1"
   Outgoing update filter list for all interfaces is not set
   Incoming update filter list for all interfaces is not set
   Router ID 2.2.2.2
-  Number of areas in this router is 1. 1 normal 0 stub 0 nssa
+  Number of areas in this router is 2. 2 normal 0 stub 0 nssa
   Maximum path: 4
   Routing for Networks:
     10.4.1.0 0.0.0.3 area 0
     10.4.1.4 0.0.0.3 area 0
+    10.4.40.0 0.0.0.255 area 2
  Reference bandwidth unit is 100 mbps
   Routing Information Sources:
     Gateway         Distance      Last Update
-    1.1.1.1              110      00:03:31
+    1.1.1.1              110      00:09:48
   Distance: (default is 110)
 ```
 
@@ -681,20 +683,47 @@ R3(config)#router ospf 1
 R3(config-router)#router-id 3.3.3.3
 R3(config-router)#network 10.4.1.4 0.0.0.3 area 0
 R3(config-router)#network 10.4.1.8 0.0.0.3 area 0
+R3(config-router)#network 10.4.10.0 0.0.0.255 area 1
+R3(config-router)#network 10.4.30.0 0.0.0.255 area 1
 R3#sh ip pro
 Routing Protocol is "ospf 1"
   Outgoing update filter list for all interfaces is not set
   Incoming update filter list for all interfaces is not set
   Router ID 3.3.3.3
-  Number of areas in this router is 1. 1 normal 0 stub 0 nssa
+  Number of areas in this router is 2. 2 normal 0 stub 0 nssa
   Maximum path: 4
   Routing for Networks:
     10.4.1.4 0.0.0.3 area 0
     10.4.1.8 0.0.0.3 area 0
+    10.4.10.0 0.0.0.255 area 1
+    10.4.30.0 0.0.0.255 area 1
  Reference bandwidth unit is 100 mbps
   Routing Information Sources:
     Gateway         Distance      Last Update
-    1.1.1.1              110      00:00:02
+    1.1.1.1              110      00:09:11
   Distance: (default is 110)
 ```
 
+- Vérification :
+
+- [x] tous les routeurs peuvent se joindre :
+
+    - `router1`
+```
+R1#ping 10.4.1.5
+
+Type escape sequence to abort.
+Sending 5, 100-byte ICMP Echos to 10.4.1.5, timeout is 2 seconds:
+!!!!!
+Success rate is 100 percent (5/5), round-trip min/avg/max = 16/22/28 ms
+R1#ping 10.4.1.6
+
+Type escape sequence to abort.
+Sending 5, 100-byte ICMP Echos to 10.4.1.6, timeout is 2 seconds:
+!!!!!
+Success rate is 100 percent (5/5), round-trip min/avg/max = 12/20/28 ms
+```
+
+- [ ] tous les clients peuvent joindre les serveurs (valider a la fin du tp)
+
+### 3. Configuration des VLANs
