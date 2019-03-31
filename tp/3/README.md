@@ -865,7 +865,7 @@ SW1(config-vlan)# exit
 
 On assigne une interface pour donner accès au VLAN.
 
-  - `Client1`
+  --> `Client1`
 ```
 SW1(config)# interface Ethernet 0/2
 SW1(config-if)# switchport mode access
@@ -883,7 +883,7 @@ SW1(config-vlan)# exit
 
 On assigne une interface pour donner accès au VLAN.
 
-  - `Server2`
+  --> `Server2`
 ```
 SW1(config)# interface Ethernet 0/3
 SW1(config-if)# switchport mode access
@@ -903,7 +903,7 @@ SW2(config-vlan)# exit
 
 On assigne une interface pour donner accès au VLAN.
 
-  - `Client 2`
+  --> `Client 2`
 ```
 SW2(config)# interface Ethernet 0/1
 SW2(config-if)# switchport mode access
@@ -918,7 +918,7 @@ SW2(config-vlan)# name sw-vlan20
 SW2(config-vlan)# exit
 ```
 
-  - `Client 3`
+  --> `Client 3`
 ```
 SW2(config)# interface Ethernet 0/2
 SW2(config-if)# switchport mode access
@@ -938,7 +938,7 @@ SW3(config-vlan)# exit
 
 On assigne une interface pour donner accès au VLAN.
 
-  - `Server1`
+  --> `Server1`
 ```
 SW3(config)# interface Ethernet 0/1
 SW3(config-if)# switchport mode access
@@ -958,13 +958,13 @@ SW4(config-vlan)# exit
 
 On assigne une interface pour donner accès au VLAN.
 
-  - `Client 4`
+  --> `Client 4`
 ```
 SW4(config)# interface Ethernet 1/0
 SW4(config-if)# switchport mode access
 SW4(config-if)# switchport access vlan 40
 ```
-  - `Client 5`
+  --> `Client 5`
 ```
 SW4(config)# interface Ethernet 2/0
 SW4(config-if)# switchport mode access
