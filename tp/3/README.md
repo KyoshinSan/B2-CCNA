@@ -971,6 +971,13 @@ SW4(config-if)# switchport mode access
 SW4(config-if)# switchport access vlan 40
 ```
 
+  --> `Router 2`
+```
+SW4(config)# interface Ethernet 0/0
+SW4(config-if)# switchport mode access
+SW4(config-if)# switchport access vlan 40
+```
+
 -> Vérification
 
 - [x] client 1 et 2 peuvent se joindre
