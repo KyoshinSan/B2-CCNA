@@ -825,7 +825,7 @@ rtt min/avg/max/mdev = 1.280/1.482/1.684/0.202 ms
 
 On s’attaque maintenant sur la configuration de VLANs sur les switch 1, 2, 3 et 4.
 
-Ici entre `SW1` et `SW2` les ports sont en mode `trunk`.
+Ici entre `SW1`, `SW2` et `SW3` les ports sont en mode `trunk`.
 
 - `switch2`
 
@@ -916,6 +916,28 @@ PING client1 (10.4.10.1) 56(84) bytes of data.
 --- client1 ping statistics ---
 2 packets transmitted, 2 received, 0% packet loss, time 1002ms
 rtt min/avg/max/mdev = 1.426/2.101/2.777/0.677 ms
+```
+
+- `server1` et `server2`
+
+```
+[jdinh@server1 ~]$ ping server2 -c 2
+PING server2 (10.4.30.2) 56(84) bytes of data.
+64 bytes from server2 (10.4.30.2): icmp_seq=1 ttl=64 time=2.64 ms
+64 bytes from server2 (10.4.30.2): icmp_seq=2 ttl=64 time=4.68 ms
+
+--- server2 ping statistics ---
+2 packets transmitted, 2 received, 0% packet loss, time 1003ms
+rtt min/avg/max/mdev = 2.643/3.664/4.686/1.023 ms
+
+[jdinh@server2 ~]$ ping server1 -c 2
+PING server1 (10.4.30.1) 56(84) bytes of data.
+64 bytes from server1 (10.4.30.1): icmp_seq=1 ttl=64 time=1.84 ms
+64 bytes from server1 (10.4.30.1): icmp_seq=2 ttl=64 time=3.28 ms
+
+--- server1 ping statistics ---
+2 packets transmitted, 2 received, 0% packet loss, time 1001ms
+rtt min/avg/max/mdev = 1.845/2.567/3.289/0.722 ms
 ```
 
 - `client3`
