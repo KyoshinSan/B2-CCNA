@@ -501,7 +501,7 @@ rtt min/avg/max/mdev = 78.925/83.354/87.783/4.429 ms
   rtt min/avg/max/mdev = 1.812/2.702/3.593/0.892 ms
   ```
   
-- [x] les clients 1, 2, 3 peuvent se ping entre eux :
+- [x] les clients 1 et 2 peuvent se ping entre eux :
 
     - `client1`
   ```
@@ -513,14 +513,6 @@ rtt min/avg/max/mdev = 78.925/83.354/87.783/4.429 ms
   --- client2 ping statistics ---
   2 packets transmitted, 2 received, 0% packet loss, time 1002ms
   rtt min/avg/max/mdev = 4.703/5.473/6.244/0.774 ms
-  [jdinh@client1 ~]$ ping client3 -c 2
-  PING client3 (10.4.10.3) 56(84) bytes of data.
-  64 bytes from client3 (10.4.10.3): icmp_seq=1 ttl=64 time=8.41 ms
-  64 bytes from client3 (10.4.10.3): icmp_seq=2 ttl=64 time=3.93 ms
-  
-  --- client3 ping statistics ---
-  2 packets transmitted, 2 received, 0% packet loss, time 1001ms
-  rtt min/avg/max/mdev = 3.936/6.173/8.410/2.237 ms
   ```
     - `client2`
   ```
@@ -532,33 +524,6 @@ rtt min/avg/max/mdev = 78.925/83.354/87.783/4.429 ms
   --- client1 ping statistics ---
   2 packets transmitted, 2 received, 0% packet loss, time 1001ms
   rtt min/avg/max/mdev = 1.531/2.444/3.357/0.913 ms
-  [jdinh@client2 ~]$ ping client3 -c 2
-  PING client3 (10.4.10.3) 56(84) bytes of data.
-  64 bytes from client3 (10.4.10.3): icmp_seq=1 ttl=64 time=6.49 ms
-  64 bytes from client3 (10.4.10.3): icmp_seq=2 ttl=64 time=3.54 ms
-  
-  --- client3 ping statistics ---
-  2 packets transmitted, 2 received, 0% packet loss, time 1002ms
-  rtt min/avg/max/mdev = 3.541/5.018/6.496/1.479 ms
-  ```
-    - `client3`
-  ```
-  [jdinh@client3 ~]$ ping client1 -c 2
-  PING client1 (10.4.10.1) 56(84) bytes of data.
-  64 bytes from client1 (10.4.10.1): icmp_seq=1 ttl=64 time=1.69 ms
-  64 bytes from client1 (10.4.10.1): icmp_seq=2 ttl=64 time=3.63 ms
-  
-  --- client1 ping statistics ---
-  2 packets transmitted, 2 received, 0% packet loss, time 1002ms
-  rtt min/avg/max/mdev = 1.698/2.665/3.632/0.967 ms
-  [jdinh@client3 ~]$ ping client2 -c 2
-  PING client2 (10.4.10.2) 56(84) bytes of data.
-  64 bytes from client2 (10.4.10.2): icmp_seq=1 ttl=64 time=1.59 ms
-  64 bytes from client2 (10.4.10.2): icmp_seq=2 ttl=64 time=3.22 ms
-  
-  --- client2 ping statistics ---
-  2 packets transmitted, 2 received, 0% packet loss, time 1002ms
-  rtt min/avg/max/mdev = 1.593/2.408/3.223/0.815 ms
   ```
 
 - [x] les routeurs peuvent discuter entre eux (de point à point):
@@ -684,6 +649,7 @@ R3(config-router)#router-id 3.3.3.3
 R3(config-router)#network 10.4.1.4 0.0.0.3 area 0
 R3(config-router)#network 10.4.1.8 0.0.0.3 area 0
 R3(config-router)#network 10.4.10.0 0.0.0.255 area 1
+R3(config-router)#network 10.4.20.0 0.0.0.255 area 1
 R3(config-router)#network 10.4.30.0 0.0.0.255 area 1
 R3#sh ip pro
 Routing Protocol is "ospf 1"
@@ -696,6 +662,7 @@ Routing Protocol is "ospf 1"
     10.4.1.4 0.0.0.3 area 0
     10.4.1.8 0.0.0.3 area 0
     10.4.10.0 0.0.0.255 area 1
+    10.4.20.0 0.0.0.255 area 1
     10.4.30.0 0.0.0.255 area 1
  Reference bandwidth unit is 100 mbps
   Routing Information Sources:
@@ -1033,16 +1000,16 @@ rtt min/avg/max/mdev = 1.845/2.567/3.289/0.722 ms
 ```
 [jdinh@client3 ~]$ ping client1 -c 2
 PING client1 (10.4.10.1) 56(84) bytes of data.
-From client3 (10.4.10.3) icmp_seq=1 Destination Host Unreachable
-From client3 (10.4.10.3) icmp_seq=2 Destination Host Unreachable
+From client3 (10.4.20.1) icmp_seq=1 Destination Host Unreachable
+From client3 (10.4.20.1) icmp_seq=2 Destination Host Unreachable
 
 --- client1 ping statistics ---
 2 packets transmitted, 0 received, +2 errors, 100% packet loss, time 1001ms
 pipe 2
 [jdinh@client3 ~]$ ping client2 -c 2
 PING client2 (10.4.10.2) 56(84) bytes of data.
-From client3 (10.4.10.3) icmp_seq=1 Destination Host Unreachable
-From client3 (10.4.10.3) icmp_seq=2 Destination Host Unreachable
+From client3 (10.4.20.1) icmp_seq=1 Destination Host Unreachable
+From client3 (10.4.20.1) icmp_seq=2 Destination Host Unreachable
 
 --- client2 ping statistics ---
 2 packets transmitted, 0 received, +2 errors, 100% packet loss, time 1000ms
@@ -1146,23 +1113,69 @@ Dans cette partie nous allons essayer de faire joindre les clients et les serveu
 --> Prérequis dans notre topologie :
 
 - [x] le mode trunk entre tous les switchs et entre `R3` et `SW1`
-- [x] tous les switchs possèdent le vlan 10, 20, 30
 
 - `SW1`
 
 ```
+SW1#sh int trunk
+
+Port        Mode             Encapsulation  Status        Native vlan
+Et0/0       on               802.1q         trunking      1
+Et0/2       on               802.1q         trunking      1
+
+Port        Vlans allowed on trunk
+Et0/0       1-4094
+Et0/2       1-4094
+
+Port        Vlans allowed and active in management domain
+Et0/0       1,10,20,30
+Et0/2       1,10,20,30
+
+Port        Vlans in spanning tree forwarding state and not pruned
+Et0/0       1,10,20,30
+Et0/2       1,10,20,30
 
 ```
 
 - `SW2`
 
 ```
+SW2#sh int trunk
+
+Port        Mode             Encapsulation  Status        Native vlan
+Et0/0       on               802.1q         trunking      1
+Et0/1       on               802.1q         trunking      1
+
+Port        Vlans allowed on trunk
+Et0/0       1-4094
+Et0/1       1-4094
+
+Port        Vlans allowed and active in management domain
+Et0/0       1,10,20,30
+Et0/1       1,10,20,30
+
+Port        Vlans in spanning tree forwarding state and not pruned
+Et0/0       1,10,20,30
+Et0/1       1,10,20,30
 
 ```
 
 - `SW3`
 
 ```
+SW3#sh int trunk
+
+Port        Mode             Encapsulation  Status        Native vlan
+Et0/0       on               802.1q         trunking      1
+
+Port        Vlans allowed on trunk
+Et0/0       1-4094
+
+Port        Vlans allowed and active in management domain
+Et0/0       1,30
+
+Port        Vlans in spanning tree forwarding state and not pruned
+Et0/0       1,30
 
 ```
 
@@ -1198,6 +1211,7 @@ R3#sh ip int br
 Interface                  IP-Address      OK? Method Status                Protocol
 FastEthernet0/0            unassigned      YES NVRAM  up                    up
 FastEthernet0/0.10         10.4.10.254     YES manual up                    up
+FastEthernet0/0.20         10.4.20.254     YES manual up                    up
 FastEthernet0/0.30         10.4.30.254     YES manual up                    up
 FastEthernet1/0            10.4.1.9        YES NVRAM  up                    up
 FastEthernet2/0            unassigned      YES NVRAM  administratively down down
@@ -1222,14 +1236,28 @@ rtt min/avg/max/mdev = 3.855/5.028/6.201/1.173 ms
 - `client3`
 
 ```
+[jdinh@client3 ~]$ ping 10.4.20.254 -c 2
+PING 10.4.20.254 (10.4.20.254) 56(84) bytes of data.
+64 bytes from 10.4.20.254: icmp_seq=1 ttl=255 time=10.9 ms
+64 bytes from 10.4.20.254: icmp_seq=2 ttl=255 time=3.91 ms
 
+--- 10.4.20.254 ping statistics ---
+2 packets transmitted, 2 received, 0% packet loss, time 1000ms
+rtt min/avg/max/mdev = 3.918/7.449/10.981/3.532 ms
 ```
 
 - `server1`
 
 
 ```
+[jdinh@server1 ~]$ ping 10.4.30.254 -c 2
+PING 10.4.30.254 (10.4.30.254) 56(84) bytes of data.
+64 bytes from 10.4.30.254: icmp_seq=1 ttl=255 time=6.19 ms
+64 bytes from 10.4.30.254: icmp_seq=2 ttl=255 time=10.3 ms
 
+--- 10.4.30.254 ping statistics ---
+2 packets transmitted, 2 received, 0% packet loss, time 1002ms
+rtt min/avg/max/mdev = 6.195/8.284/10.373/2.089 ms
 ```
 
 --> il faut ajouter sur les `clients` et `servers` les routes par défault qui point vers leur passerelles respectives
@@ -1243,6 +1271,15 @@ default via 10.4.10.254 dev enp0s3
 10.4.10.0/24 dev enp0s3 proto kernel scope link src 10.4.10.1 metric 100
 ```
 
+- `client3`
+
+```
+[jdinh@client3 ~]$ sudo ip route add default via 10.4.20.254 dev enp0s3
+[jdinh@client3 ~]$ ip r s
+default via 10.4.20.254 dev enp0s3
+10.4.20.0/24 dev enp0s3 proto kernel scope link src 10.4.10.1 metric 100
+```
+
 - `server1`
 
 ```
@@ -1250,4 +1287,42 @@ default via 10.4.10.254 dev enp0s3
 [jdinh@server1 ~]$ ip r s
 default via 10.4.30.254 dev enp0s3
 10.4.30.0/24 dev enp0s3 proto kernel scope link src 10.4.30.1 metric 100
+```
+
+--> Vérification :
+
+Tous le monde doit pouvoir se ping.
+
+Prenons par exemple `client4`
+
+```
+# il peut joindre le reseau 10.4.10.0/24
+[jdinh@client4 ~]$ ping client1 -c 2
+PING client1 (10.4.10.1) 56(84) bytes of data.
+64 bytes from client1 (10.4.10.1): icmp_seq=1 ttl=62 time=34.5 ms
+64 bytes from client1 (10.4.10.1): icmp_seq=2 ttl=62 time=27.7 ms
+
+--- client1 ping statistics ---
+2 packets transmitted, 2 received, 0% packet loss, time 1002ms
+rtt min/avg/max/mdev = 27.776/31.183/34.590/3.407 ms
+
+# il peut joindre le reseau 10.4.10.0/24
+[jdinh@client4 ~]$ ping server1 -c 2
+PING server1 (10.4.30.1) 56(84) bytes of data.
+64 bytes from server1 (10.4.30.1): icmp_seq=1 ttl=62 time=30.9 ms
+64 bytes from server1 (10.4.30.1): icmp_seq=2 ttl=62 time=39.1 ms
+
+--- server1 ping statistics ---
+2 packets transmitted, 2 received, 0% packet loss, time 1001ms
+rtt min/avg/max/mdev = 30.903/35.031/39.159/4.128 ms
+
+# il peut joindre le reseau 10.4.20.0/24
+[jdinh@client4 ~]$ ping 10.4.20.1 -c 2
+PING 10.4.20.1 (10.4.20.1) 56(84) bytes of data.
+64 bytes from 10.4.20.1: icmp_seq=1 ttl=62 time=41.8 ms
+64 bytes from 10.4.20.1: icmp_seq=2 ttl=62 time=40.1 ms
+
+--- 10.4.20.1 ping statistics ---
+2 packets transmitted, 2 received, 0% packet loss, time 1002ms
+rtt min/avg/max/mdev = 40.140/41.013/41.887/0.896 ms
 ```
