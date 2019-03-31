@@ -852,6 +852,44 @@ SW3(config-if)#switchport trunk encapsulation dot1q
 SW3(config-if)#switchport mode trunk
 ```
 
+- `switch1`
+
+Création du VLAN 10.
+
+```
+SW1# conf t
+SW1(config)# vlan 10
+SW1(config-vlan)# name sw-vlan10
+SW1(config-vlan)# exit
+```
+
+On assigne une interface pour donner accès au VLAN.
+
+  - `Client1`
+```
+SW1(config)# interface Ethernet 0/2
+SW1(config-if)# switchport mode access
+SW1(config-if)# switchport access vlan 10
+```
+
+Création du VLAN 30.
+
+```
+SW1# conf t
+SW1(config)# vlan 30
+SW1(config-vlan)# name sw-vlan30
+SW1(config-vlan)# exit
+```
+
+On assigne une interface pour donner accès au VLAN.
+
+  - `Server2`
+```
+SW1(config)# interface Ethernet 0/3
+SW1(config-if)# switchport mode access
+SW1(config-if)# switchport access vlan 30
+```
+
 - `switch2`
 
 Création du VLAN 10.
@@ -887,11 +925,29 @@ SW2(config-if)# switchport mode access
 SW2(config-if)# switchport access vlan 20
 ```
 
-Création du VLAN 40.
+- `switch3`
+
+Création du VLAN 30.
+
+```
+SW3# conf t
+SW3(config)# vlan 30
+SW3(config-vlan)# name sw-vlan30
+SW3(config-vlan)# exit
+```
+
+On assigne une interface pour donner accès au VLAN.
+
+  - `Server1`
+```
+SW3(config)# interface Ethernet 0/1
+SW3(config-if)# switchport mode access
+SW3(config-if)# switchport access vlan 30
+```
 
 - `switch4`
 
-Création du VLAN.
+Création du VLAN 40.
 
 ```
 SW4# conf t
