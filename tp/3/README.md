@@ -1041,3 +1041,39 @@ From client3 (10.4.10.3) icmp_seq=2 Destination Host Unreachable
 2 packets transmitted, 0 received, +2 errors, 100% packet loss, time 1000ms
 pipe 2
 ```
+
+### 4. Mise en place de la NAT
+
+- `Router1`
+
+--> Passage en mode configuration puis définition des interfaces internes pour le NAT :
+```
+# conf t
+Router1(config)# interface fastEthernet 0/0
+Router1(config-if)# ip nat outside
+Router1(config-if)# exit
+```
+
+--> définition des interfaces internes pour le NAT (celles des routers 2 et 3):
+```
+Router1(config)# interface fastEthernet 1/0
+Router1(config-if)# ip nat inside
+Router1(config-if)# exit
+
+Router1(config)# interface fastEthernet 2/0
+Router1(config-if)# ip nat inside
+Router1(config-if)# exit
+```
+
+--> On ajoute ensuite une passerelle par défaut sur :
+- `Router2`
+```
+Router2# conf t
+Router2(config)# ip route 0.0.0.0 0.0.0.0 10.4.1.1 (ip gateway)
+```
+- `Router3`
+```
+Router3# conf t
+Router3(config)# ip route 0.0.0.0 0.0.0.0 10.4.1.10 (ip gateway)
+```
+- Ces deux routeurs ont désormais aussi accès à internet.
