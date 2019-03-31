@@ -1076,4 +1076,4 @@ Router2(config)# ip route 0.0.0.0 0.0.0.0 10.4.1.1 (ip gateway)
 Router3# conf t
 Router3(config)# ip route 0.0.0.0 0.0.0.0 10.4.1.10 (ip gateway)
 ```
-- Ces deux routeurs ont désormais aussi accès à internet.
+==> Ces deux routeurs ont désormais aussi accès à internet.
