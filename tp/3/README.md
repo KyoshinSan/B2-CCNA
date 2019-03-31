@@ -726,4 +726,6 @@ Success rate is 100 percent (5/5), round-trip min/avg/max = 12/20/28 ms
 
 - [ ] tous les clients peuvent joindre les serveurs (valider a la fin du tp)
 
+**********
+
 ### 3. Configuration des VLANs
