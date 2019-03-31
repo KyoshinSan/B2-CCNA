@@ -1042,19 +1042,45 @@ From client3 (10.4.10.3) icmp_seq=2 Destination Host Unreachable
 pipe 2
 ```
 
-### 4. Mise en place de la NAT
+**********
+
+### 5. Mise en place de la NAT
+
+On va permettre aux clients du réseau (client et serveurs) d'accéder à Internet grâce à la fonctionnalité NAT.
+
+- [x] récupérer une ip pour faire du NAT
+- [x] définir les interfaces internes et externes
+- [x] activer le NAT et créer une access-list
+- [x] diffuser la route par défault par OSPF
 
 - `Router1`
 
---> Passage en mode configuration puis définition des interfaces internes pour le NAT :
+--> Récupérer une ip pour faire du NAT
+
 ```
-# conf t
-Router1(config)# interface fastEthernet 0/0
-Router1(config-if)# ip nat outside
-Router1(config-if)# exit
+R1#conf t
+R1(config)#int fastEthernet 0/0
+R1(config-if)#ip address dhcp
+R1(config-if)#no shut
+
+# ensuite on vérifie si l'on peut aller sur internet
+R1#ping 8.8.8.8
+
+Type escape sequence to abort.
+Sending 5, 100-byte ICMP Echos to 8.8.8.8, timeout is 2 seconds:
+!!!!!
+Success rate is 100 percent (5/5), round-trip min/avg/max = 60/62/68 ms
 ```
 
---> définition des interfaces internes pour le NAT (celles des routers 2 et 3):
+--> Passage en mode configuration puis définition des interfaces internes pour le NAT :
+```
+R1# conf t
+R1(config)# interface fastEthernet 0/0
+R1(config-if)# ip nat outside
+R1(config-if)# exit
+```
+
+--> définition des interfaces internes pour le NAT (celles des routers 2 et 3) :
 ```
 Router1(config)# interface fastEthernet 1/0
 Router1(config-if)# ip nat inside
@@ -1065,15 +1091,41 @@ Router1(config-if)# ip nat inside
 Router1(config-if)# exit
 ```
 
---> On ajoute ensuite une passerelle par défaut sur :
-- `Router2`
+--> On active le NAT et on créer un access-list très permissive qui autorise tout le trafic :
+
 ```
-Router2# conf t
-Router2(config)# ip route 0.0.0.0 0.0.0.0 10.4.1.1 (ip gateway)
+R1(config)#ip nat inside source list 1 interface fastEthernet 0/0 overload
+R1(config)#access-list 1 permit any
 ```
-- `Router3`
+
+--> On diffuse la route par défault par OSPF:
+
 ```
-Router3# conf t
-Router3(config)# ip route 0.0.0.0 0.0.0.0 10.4.1.10 (ip gateway)
+R1#conf t
+R1(config)#router ospf 1
+R1(config-router)#default-information originate
 ```
+
 ==> Ces deux routeurs ont désormais aussi accès à internet.
+
+- `router2`
+
+```
+R2#ping 8.8.8.8
+
+Type escape sequence to abort.
+Sending 5, 100-byte ICMP Echos to 8.8.8.8, timeout is 2 seconds:
+!!!!!
+Success rate is 100 percent (5/5), round-trip min/avg/max = 64/84/100 ms
+```
+
+- `router3`
+
+```
+R3#ping 8.8.8.8
+
+Type escape sequence to abort.
+Sending 5, 100-byte ICMP Echos to 8.8.8.8, timeout is 2 seconds:
+!!!!!
+Success rate is 100 percent (5/5), round-trip min/avg/max = 80/84/88 ms
+```
