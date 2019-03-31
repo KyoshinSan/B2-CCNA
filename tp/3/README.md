@@ -798,7 +798,7 @@ PING 10.4.40.102 (10.4.40.102) 56(84) bytes of data.
 rtt min/avg/max/mdev = 1.340/2.631/3.923/1.292 ms
 ```
 
-   - `client5`
+    - `client5`
 ```
 [jdinh@client5 ~]$ ping 10.4.40.254 -c 2
 PING 10.4.40.254 (10.4.40.254) 56(84) bytes of data.
