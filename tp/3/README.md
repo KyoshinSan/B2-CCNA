@@ -1198,10 +1198,36 @@ R3#sh ip int br
 Interface                  IP-Address      OK? Method Status                Protocol
 FastEthernet0/0            unassigned      YES NVRAM  up                    up
 FastEthernet0/0.10         10.4.10.254     YES manual up                    up
-FastEthernet0/0.20         10.4.20.254     YES manual up                    up
 FastEthernet0/0.30         10.4.30.254     YES manual up                    up
 FastEthernet1/0            10.4.1.9        YES NVRAM  up                    up
 FastEthernet2/0            unassigned      YES NVRAM  administratively down down
 FastEthernet3/0            10.4.1.6        YES NVRAM  up                    up
+```
+
+--> Petite vérification que les clients et les servers peuvent joindre leur gateway
+
+- `client1`
+
+```
+[jdinh@client1 ~]$ ping 10.4.10.254 -c 2
+PING 10.4.10.254 (10.4.10.254) 56(84) bytes of data.
+64 bytes from 10.4.10.254: icmp_seq=1 ttl=255 time=6.20 ms
+64 bytes from 10.4.10.254: icmp_seq=2 ttl=255 time=3.85 ms
+
+--- 10.4.10.254 ping statistics ---
+2 packets transmitted, 2 received, 0% packet loss, time 1001ms
+rtt min/avg/max/mdev = 3.855/5.028/6.201/1.173 ms
+```
+
+- `client3`
+
+```
+
+```
+
+- `server1`
+
+
+```
 
 ```
