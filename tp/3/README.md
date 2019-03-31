@@ -617,7 +617,7 @@ On s’occupe ensuite de la configuration de OSPF sur les routers 1, 2 et 3.
 
 - [x] Passer en mode configuration d’interface
 - [x] Activer OSPF
-- [x] Définir in router-id
+- [x] Définir un router-id
 - [x] Partager une ou plusieurs routes
 - [x] Vérifier l’état d’OSPF
 
@@ -728,7 +728,100 @@ Success rate is 100 percent (5/5), round-trip min/avg/max = 12/20/28 ms
 
 **********
 
-### 3. Configuration des VLANs
+### 3. Configuration d'un routeur Cisco avec le rôle de serveur DHCP
+
+On va ajoute un rôle au `router2`, celui de DHCP. Il s'occupera de distribuer les ip pour les clients 4 et 5 de façon dynamique.
+
+- Sur `router2` :
+
+- [x] Passer en mode configuration d’interface
+- [x] Activer le DHCP
+- [x] Définir l'adresse réseau
+- [x] Définir un serveur dns
+- [x] Définir la gateway par défault
+- [x] Exclure une plage d'ip
+
+```
+R2#conf t
+R2(config)#ip dhcp pool CLIENT_LAN40
+R2(dhcp-config)#network 10.4.40.0 255.255.255.0
+R2(dhcp-config)#dns-server 8.8.8.8
+R2(dhcp-config)#default-router 10.4.40.254
+R2(config)#ip dhcp excluded-address 10.4.40.1 10.4.40.100
+```
+
+- Sur `client4` :
+
+- [x] enp0s3 doit être en DHCP
+- [x] on redémarre enp0s3
+
+```
+[jdinh@client4 ~]$ ip a | grep " inet "
+    inet 127.0.0.1/8 scope host lo
+    inet 10.4.40.101/24 brd 10.4.40.255 scope global noprefixroute dynamic enp0s3
+```
+
+
+- Même chose sur `client5` :
+
+- [x] enp0s3 doit être en DHCP
+- [x] on redémarre enp0s3
+
+```
+[jdinh@client5 ~]$ ip a | grep " inet "
+    inet 127.0.0.1/8 scope host lo
+    inet 10.4.40.102/24 brd 10.4.40.255 scope global noprefixroute dynamic enp0s3
+```
+
+- Vérification :
+
+- [x] Les clients peuvent joindre la gateway mais aussi se ping entre eux :
+
+    - `client4`
+```
+[jdinh@client4 ~]$ ping 10.4.40.254 -c 2
+PING 10.4.40.254 (10.4.40.254) 56(84) bytes of data.
+64 bytes from 10.4.40.254: icmp_seq=1 ttl=255 time=3.60 ms
+64 bytes from 10.4.40.254: icmp_seq=2 ttl=255 time=6.76 ms
+
+--- 10.4.40.254 ping statistics ---
+2 packets transmitted, 2 received, 0% packet loss, time 1001ms
+rtt min/avg/max/mdev = 3.609/5.188/6.768/1.581 ms
+
+[jdinh@client4 ~]$ ping 10.4.40.102 -c 2
+PING 10.4.40.102 (10.4.40.102) 56(84) bytes of data.
+64 bytes from 10.4.40.102: icmp_seq=1 ttl=64 time=3.92 ms
+64 bytes from 10.4.40.102: icmp_seq=2 ttl=64 time=1.34 ms
+
+--- 10.4.40.102 ping statistics ---
+2 packets transmitted, 2 received, 0% packet loss, time 1001ms
+rtt min/avg/max/mdev = 1.340/2.631/3.923/1.292 ms
+```
+
+    - `client5`
+```
+[jdinh@client5 ~]$ ping 10.4.40.254 -c 2
+PING 10.4.40.254 (10.4.40.254) 56(84) bytes of data.
+64 bytes from 10.4.40.254: icmp_seq=1 ttl=255 time=20.4 ms
+64 bytes from 10.4.40.254: icmp_seq=2 ttl=255 time=10.1 ms
+
+--- 10.4.40.254 ping statistics ---
+2 packets transmitted, 2 received, 0% packet loss, time 1001ms
+rtt min/avg/max/mdev = 10.173/15.327/20.482/5.155 ms
+
+[jdinh@client5 ~]$ ping 10.4.40.101 -c 2
+PING 10.4.40.101 (10.4.40.101) 56(84) bytes of data.
+64 bytes from 10.4.40.101: icmp_seq=1 ttl=64 time=1.68 ms
+64 bytes from 10.4.40.101: icmp_seq=2 ttl=64 time=1.28 ms
+
+--- 10.4.40.101 ping statistics ---
+2 packets transmitted, 2 received, 0% packet loss, time 1001ms
+rtt min/avg/max/mdev = 1.280/1.482/1.684/0.202 ms
+```
+
+**********
+
+### 4. Configuration des VLANs
 
 On s’attaque maintenant sur la configuration de VLANs sur les switch 1, 2, 3 et 4.
 
@@ -760,4 +853,3 @@ SW4(config)# interface Ethernet 2/0
 SW4(config-if)# switchport mode access
 SW4(config-if)# switchport access vlan 40
 ```
-
