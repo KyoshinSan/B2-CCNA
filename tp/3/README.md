@@ -798,7 +798,7 @@ PING 10.4.40.102 (10.4.40.102) 56(84) bytes of data.
 rtt min/avg/max/mdev = 1.340/2.631/3.923/1.292 ms
 ```
 
-    - `client5`
+   - `client5`
 ```
 [jdinh@client5 ~]$ ping 10.4.40.254 -c 2
 PING 10.4.40.254 (10.4.40.254) 56(84) bytes of data.
@@ -846,8 +846,6 @@ SW4(config)# interface Ethernet 1/0
 SW4(config-if)# switchport mode access
 SW4(config-if)# switchport access vlan 40
 ```
-
-
   - `Client 5`
 ```
 SW4(config)# interface Ethernet 2/0
