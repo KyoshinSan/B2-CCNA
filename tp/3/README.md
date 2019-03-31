@@ -1136,3 +1136,72 @@ Sending 5, 100-byte ICMP Echos to 8.8.8.8, timeout is 2 seconds:
 !!!!!
 Success rate is 100 percent (5/5), round-trip min/avg/max = 80/84/88 ms
 ```
+
+**********
+
+### 6. Routage *inter-vlan*, Mise en place du *router-on-a-stick*
+
+Dans cette partie nous allons essayer de faire joindre les clients et les serveurs entre-eux.
+
+--> Prérequis dans notre topologie :
+
+- [x] le mode trunk entre tous les switchs et entre `R3` et `SW1`
+- [x] tous les switchs possèdent le vlan 10, 20, 30
+
+- `SW1`
+
+```
+
+```
+
+- `SW2`
+
+```
+
+```
+
+- `SW3`
+
+```
+
+```
+
+--> On passe à la configuration de `R3` en tant que *router-on-a-stick*
+
+- `R3`
+
+```
+# on passe en mode config et on démarre l'interface que l'on va 'couper' en plusieurs interfaces
+R3#conf t
+R3(config)#int fastEthernet 0/0
+R3(config-if)#no shut
+R3(config-if)#exit
+
+# on crée une nouvelle interface virtuelle pour le VLAN 10
+R3(config)#int fastEthernet 0/0.10
+
+# on modifie l'encapsulation en dot1Q et on la tagues sur le VLAN 10
+R3(config-subif)#encapsulation dot1Q 10
+R3(config-subif)#ip address 10.4.10.254 255.255.255.0
+
+# pareil pour les autres VLAN
+R3(config)#int fastEthernet 0/0.20
+R3(config-subif)#encapsulation dot1Q 20
+R3(config-subif)#ip address 10.4.20.254 255.255.255.0
+
+R3(config)#int fastEthernet 0/0.30
+R3(config-subif)#encapsulation dot1Q 30
+R3(config-subif)#ip address 10.4.30.254 255.255.255.0
+
+# on vérifie nos changement
+R3#sh ip int br
+Interface                  IP-Address      OK? Method Status                Protocol
+FastEthernet0/0            unassigned      YES NVRAM  up                    up
+FastEthernet0/0.10         10.4.10.254     YES manual up                    up
+FastEthernet0/0.20         10.4.20.254     YES manual up                    up
+FastEthernet0/0.30         10.4.30.254     YES manual up                    up
+FastEthernet1/0            10.4.1.9        YES NVRAM  up                    up
+FastEthernet2/0            unassigned      YES NVRAM  administratively down down
+FastEthernet3/0            10.4.1.6        YES NVRAM  up                    up
+
+```
