@@ -847,7 +847,7 @@ SW4(config-if)# switchport mode access
 SW4(config-if)# switchport access vlan 40
 ```
 
-  - `Client 5`
+  - `Client5`
 ```
 SW4(config)# interface Ethernet 2/0
 SW4(config-if)# switchport mode access
