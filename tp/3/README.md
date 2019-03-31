@@ -475,3 +475,29 @@ rtt min/avg/max/mdev = 78.925/83.354/87.783/4.429 ms
 
 
 -  Vérification
+
+[x] tous les serveurs peuvent se ping entre eux :
+
+  - `server1`<br />
+  ```
+  [jdinh@server1 ~]$ ping server2 -c 2
+  PING server2 (10.4.30.2) 56(84) bytes of data.
+  64 bytes from server2 (10.4.30.2): icmp_seq=1 ttl=64 time=1.68 ms
+  64 bytes from server2 (10.4.30.2): icmp_seq=2 ttl=64 time=6.60 ms
+  
+  --- server2 ping statistics ---
+  2 packets transmitted, 2 received, 0% packet loss, time 1002ms
+  rtt min/avg/max/mdev = 1.680/4.142/6.604/2.462 ms
+  ```
+    - `server1`<br />
+  ```
+  [jdinh@server1 ~]$ ping server2 -c 2
+  PING server2 (10.4.30.2) 56(84) bytes of data.
+  64 bytes from server2 (10.4.30.2): icmp_seq=1 ttl=64 time=1.68 ms
+  64 bytes from server2 (10.4.30.2): icmp_seq=2 ttl=64 time=6.60 ms
+  
+  --- server2 ping statistics ---
+  2 packets transmitted, 2 received, 0% packet loss, time 1002ms
+  rtt min/avg/max/mdev = 1.680/4.142/6.604/2.462 ms
+  ```
+  
