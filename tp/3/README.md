@@ -621,7 +621,7 @@ On s’occupe ensuite de la configuration de OSPF sur les routers 1, 2 et 3.
 - [x] Partager une ou plusieurs routes
 - [x] Vérifier l’état d’OSPF
 
-- Configuration de OSPF sur le router1 :
+- Configuration de OSPF sur le `router1` :
 
 ```
 R1#conf t
@@ -647,4 +647,54 @@ Routing Protocol is "ospf 1"
 
 ```
 Suivre la même procédure sur les autres routeurs.
+
+- `router2` :
+
+```
+R2#conf t
+R2(config)#router ospf 1
+R2(config-router)#router-id 2.2.2.2
+R2(config-router)#network 10.4.1.0 0.0.0.3 area 0
+R2(config-router)#network 10.4.1.4 0.0.0.3 area 0
+R2#sh ip pro
+Routing Protocol is "ospf 1"
+  Outgoing update filter list for all interfaces is not set
+  Incoming update filter list for all interfaces is not set
+  Router ID 2.2.2.2
+  Number of areas in this router is 1. 1 normal 0 stub 0 nssa
+  Maximum path: 4
+  Routing for Networks:
+    10.4.1.0 0.0.0.3 area 0
+    10.4.1.4 0.0.0.3 area 0
+ Reference bandwidth unit is 100 mbps
+  Routing Information Sources:
+    Gateway         Distance      Last Update
+    1.1.1.1              110      00:03:31
+  Distance: (default is 110)
+```
+
+- `router3` :
+
+```
+R3#conf t
+R3(config)#router ospf 1
+R3(config-router)#router-id 3.3.3.3
+R3(config-router)#network 10.4.1.4 0.0.0.3 area 0
+R3(config-router)#network 10.4.1.8 0.0.0.3 area 0
+R3#sh ip pro
+Routing Protocol is "ospf 1"
+  Outgoing update filter list for all interfaces is not set
+  Incoming update filter list for all interfaces is not set
+  Router ID 3.3.3.3
+  Number of areas in this router is 1. 1 normal 0 stub 0 nssa
+  Maximum path: 4
+  Routing for Networks:
+    10.4.1.4 0.0.0.3 area 0
+    10.4.1.8 0.0.0.3 area 0
+ Reference bandwidth unit is 100 mbps
+  Routing Information Sources:
+    Gateway         Distance      Last Update
+    1.1.1.1              110      00:00:02
+  Distance: (default is 110)
+```
 
