@@ -730,7 +730,11 @@ Success rate is 100 percent (5/5), round-trip min/avg/max = 12/20/28 ms
 
 ### 3. Configuration des VLANs
 
-Sur le switch4<br />
+On s’attaque maintenant sur la configuration de VLANs sur les switch 1, 2, 3 et 4.
+
+Ici entre `SW1` et `SW2` les ports sont en mode `trunk`.
+
+- `switch4`
 -> Création du VLAN.
 ```
 SW4# conf t
@@ -739,13 +743,13 @@ SW4(config-vlan)# name sw-vlan40
 SW4(config-vlan)# exit
 ```
 -> On assigne une interface pour donner accès au VLAN.<br />
-• Client 4
+    - Client 4
 ```
 SW4(config)# interface Ethernet 1/0
 SW4(config-if)# switchport mode access
 SW4(config-if)# switchport access vlan 40
 ```
-• Client 5
+   - `Client 5`
 ```
 SW4(config)# interface Ethernet 2/0
 SW4(config-if)# switchport mode access
