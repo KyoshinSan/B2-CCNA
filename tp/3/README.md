@@ -889,3 +889,52 @@ SW4(config)# interface Ethernet 2/0
 SW4(config-if)# switchport mode access
 SW4(config-if)# switchport access vlan 40
 ```
+
+-> Vérification
+
+- [x] client 1 et 2 peuvent se joindre
+- [x] server 1 et 2 peuvent se joindre
+- [x] client 3 peut joindre personne
+
+- `client1` et `client2` :
+
+```
+[jdinh@client1 ~]$ ping client2 -c 2
+PING client2 (10.4.10.2) 56(84) bytes of data.
+64 bytes from client2 (10.4.10.2): icmp_seq=1 ttl=64 time=1.55 ms
+64 bytes from client2 (10.4.10.2): icmp_seq=2 ttl=64 time=1.64 ms
+
+--- client2 ping statistics ---
+2 packets transmitted, 2 received, 0% packet loss, time 1001ms
+rtt min/avg/max/mdev = 1.557/1.603/1.649/0.046 ms
+
+[jdinh@client2 ~]$ ping client1 -c 2
+PING client1 (10.4.10.1) 56(84) bytes of data.
+64 bytes from client1 (10.4.10.1): icmp_seq=1 ttl=64 time=2.77 ms
+64 bytes from client1 (10.4.10.1): icmp_seq=2 ttl=64 time=1.42 ms
+
+--- client1 ping statistics ---
+2 packets transmitted, 2 received, 0% packet loss, time 1002ms
+rtt min/avg/max/mdev = 1.426/2.101/2.777/0.677 ms
+```
+
+- `client3`
+
+```
+[jdinh@client3 ~]$ ping client1 -c 2
+PING client1 (10.4.10.1) 56(84) bytes of data.
+From client3 (10.4.10.3) icmp_seq=1 Destination Host Unreachable
+From client3 (10.4.10.3) icmp_seq=2 Destination Host Unreachable
+
+--- client1 ping statistics ---
+2 packets transmitted, 0 received, +2 errors, 100% packet loss, time 1001ms
+pipe 2
+[jdinh@client3 ~]$ ping client2 -c 2
+PING client2 (10.4.10.2) 56(84) bytes of data.
+From client3 (10.4.10.3) icmp_seq=1 Destination Host Unreachable
+From client3 (10.4.10.3) icmp_seq=2 Destination Host Unreachable
+
+--- client2 ping statistics ---
+2 packets transmitted, 0 received, +2 errors, 100% packet loss, time 1000ms
+pipe 2
+```
