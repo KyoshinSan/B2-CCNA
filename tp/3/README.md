@@ -1231,3 +1231,23 @@ rtt min/avg/max/mdev = 3.855/5.028/6.201/1.173 ms
 ```
 
 ```
+
+--> il faut ajouter sur les `clients` et `servers` les routes par défault qui point vers leur passerelles respectives
+
+- `client1`
+
+```
+[jdinh@client1 ~]$ sudo ip route add default via 10.4.10.254 dev enp0s3
+[jdinh@client1 ~]$ ip r s
+default via 10.4.10.254 dev enp0s3
+10.4.10.0/24 dev enp0s3 proto kernel scope link src 10.4.10.1 metric 100
+```
+
+- `server1`
+
+```
+[jdinh@server1 ~]$ sudo ip route add default via 10.4.30.254 dev enp0s3
+[jdinh@server1 ~]$ ip r s
+default via 10.4.30.254 dev enp0s3
+10.4.30.0/24 dev enp0s3 proto kernel scope link src 10.4.30.1 metric 100
+```
