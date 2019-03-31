@@ -827,6 +827,31 @@ On s’attaque maintenant sur la configuration de VLANs sur les switch 1, 2, 3 e
 
 Ici entre `SW1`, `SW2` et `SW3` les ports sont en mode `trunk`.
 
+--> Mise en place du TRUNK entre les routeurs 1 et 2 :
+```
+SW1(config)#interface ethernet 0/1
+SW1(config-if)#switchport trunk encapsulation dot1q
+SW1(config-if)#switchport mode trunk
+```
+```
+SW2(config)#interface ethernet 0/0
+SW2(config-if)#switchport trunk encapsulation dot1q
+SW2(config-if)#switchport mode trunk
+```
+
+
+--> Mise en place du TRUNK entre les routeurs 2 et 3 :
+```
+SW2(config)#interface ethernet 0/3
+SW2(config-if)#switchport trunk encapsulation dot1q
+SW2(config-if)#switchport mode trunk
+```
+```
+SW3(config)#interface ethernet 0/0
+SW3(config-if)#switchport trunk encapsulation dot1q
+SW3(config-if)#switchport mode trunk
+```
+
 - `switch2`
 
 Création du VLAN 10.
