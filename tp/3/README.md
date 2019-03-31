@@ -777,7 +777,7 @@ R2(config)#ip dhcp excluded-address 10.4.40.1 10.4.40.100
 
 - [x] Les clients peuvent joindre la gateway mais aussi se ping entre eux :
 
-  - `client4`
+- `client4`
 ```
 [jdinh@client4 ~]$ ping 10.4.40.254 -c 2
 PING 10.4.40.254 (10.4.40.254) 56(84) bytes of data.
@@ -798,7 +798,7 @@ PING 10.4.40.102 (10.4.40.102) 56(84) bytes of data.
 rtt min/avg/max/mdev = 1.340/2.631/3.923/1.292 ms
 ```
    
-  - `client5`
+- `client5`
 ```
 [jdinh@client5 ~]$ ping 10.4.40.254 -c 2
 PING 10.4.40.254 (10.4.40.254) 56(84) bytes of data.
@@ -817,7 +817,7 @@ PING 10.4.40.101 (10.4.40.101) 56(84) bytes of data.
 --- 10.4.40.101 ping statistics ---
 2 packets transmitted, 2 received, 0% packet loss, time 1001ms
 rtt min/avg/max/mdev = 1.280/1.482/1.684/0.202 ms
-
+```
 
 **********
 
