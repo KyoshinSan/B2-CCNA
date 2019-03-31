@@ -450,7 +450,7 @@ rtt min/avg/max/mdev = 78.925/83.354/87.783/4.429 ms
 ```
 
 ## IV. Lab Final
-### Mise en place du lab
+### 1.Mise en place du lab
 
 - Topologie
 > le router2 a aussi pour role DHCP pour les clients 4 et 5
@@ -610,3 +610,41 @@ rtt min/avg/max/mdev = 78.925/83.354/87.783/4.429 ms
   !!!!!
   Success rate is 100 percent (5/5), round-trip min/avg/max = 4/17/44 ms
   ```
+
+### 2. Configuration de OSPF
+
+On s’occupe ensuite de la configuration de OSPF sur les routers 1, 2 et 3.
+
+- [x] Passer en mode configuration d’interface
+- [x] Activer OSPF
+- [x] Définir in router-id
+- [x] Partager une ou plusieurs routes
+- [x] Vérifier l’état d’OSPF
+
+- Configuration de OSPF sur le router1 :
+
+```
+R1#conf t
+R1(config)#router ospf 1
+R1(config-router)#router-id 1.1.1.1
+R1(config-router)#network 10.4.1.0 0.0.0.3 area 0
+R1(config-router)#network 10.4.1.8 0.0.0.3 area 0
+R1#sh ip pro
+Routing Protocol is "ospf 1"
+  Outgoing update filter list for all interfaces is not set
+  Incoming update filter list for all interfaces is not set
+  Router ID 1.1.1.1
+  Number of areas in this router is 1. 1 normal 0 stub 0 nssa
+  Maximum path: 4
+  Routing for Networks:
+    10.4.1.0 0.0.0.3 area 0
+    10.4.1.8 0.0.0.3 area 0
+ Reference bandwidth unit is 100 mbps
+  Routing Information Sources:
+    Gateway         Distance      Last Update
+  Distance: (default is 110)
+
+
+```
+Suivre la même procédure sur les autres routeurs.
+
