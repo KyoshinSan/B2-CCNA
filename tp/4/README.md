@@ -7,3 +7,5 @@ Déroulement
 - Création et configuration des machines
 - Ajout des imprimantes
 - Configuration des Vlans
+
+- INSERER PLAN D'ADDRESSAGE ICI
