@@ -36,12 +36,12 @@ vi /etc/sysconfig/network
 
 - Tableau Matériel
 
-| Matériel | Nombre |
-| ---------------- | ----------- |
-| `router` | `1` |
-| `switch` | `7` |
-| `PC` | `24` |
-| `server` | `5` |
-| `printer` | `5` |
-| `cable` | `46` |
+| Matériel | Quantité | Prix unitaire | Prix Total | Référence |
+| ---------------- | ----------- | ----------- | ----------- | ----------- |
+| `Serveurs` | `5` |
+| `Postes Employés` | `24` |
+| `Switchs` | `7` |
+| `Routeur` | `1` |
+| `Imprimantes` | `5` |
+| `Câbles` | `5` |
 
