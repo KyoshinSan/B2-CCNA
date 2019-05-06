@@ -12,6 +12,8 @@ vi /etc/sysconfig/network
 -GATEWAY=ip machine.
 =>ajouter sur les clients et servers les routes par défault qui point vers leur passerelles respectives
 
+-  Tableau d'adressage
+
 | Hosts | `192.168.10.0/24` | `192.168.20.0/24` |	`192.168.30.0/24` |	`192.168.80/24` | `192.168.80.0/24` | 
 | ---------------- | ----------- | ----------- | ------------ | ------------ | ------------ | 
 | `client1.lab1.tp4` | `192.168.10.1/24`| X           | X            | X            | X |
@@ -25,3 +27,8 @@ vi /etc/sysconfig/network
 | `server3.lab1.tp4` | X           | X           | X            | `192.168.90.3/24` | X |
 | `server4.lab1.tp4` | X           | X           | X            | `192.168.90.4/24` | X |
 | `server5.lab1.tp4` | X           | X           | X            | `192.168.90.5/24` | X |
+| `printer1.lab1.tp4` | X           | X           | X            | X             | `192.168.80.1/24` |
+| `printer2.lab1.tp4` | X           | X           | X            | X             | `192.168.80.2/24` |
+| `printer3.lab1.tp4` | X           | X           | X            | X             | `192.168.80.3/24` |
+| `printer4.lab1.tp4` | X           | X           | X            | X             | `192.168.80.4/24` |
+| `printer5.lab1.tp4` | X           | X           | X            | X             | `192.168.80.5/24` |
