@@ -32,3 +32,16 @@ vi /etc/sysconfig/network
 | `printer3.lab1.tp4` | X           | X           | X            | `192.168.80.3/24` | X |
 | `printer4.lab1.tp4` | X           | X           | X            | `192.168.80.4/24` | X |
 | `printer5.lab1.tp4` | X           | X           | X            | `192.168.80.5/24` | X |
+
+
+- Tableau Matériel
+
+| Matériel | Nombre |
+| ---------------- | ----------- |
+| `router` | `1` |
+| `switch` | `7` |
+| `PC` | `24` |
+| `server` | `5` |
+| `printer` | `5` |
+| `cable` | `46` |
+
