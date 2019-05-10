@@ -48,7 +48,7 @@
 
 #### Prix total de l'infrastructure : 34 020 €
 
-##      III. Configuration des postes clients, admin, RH et des serveurs
+##      III. Configuration des postes clients/admin/RH/serveurs et imprimantes
 
 Nous avons dans un premier temps créé une machine **client01**, à laquelle on a attribué son **hostname et adresse ip respectifs** (cf. tableau d'adressage).
 - Hostname : 
