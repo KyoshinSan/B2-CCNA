@@ -5,7 +5,8 @@
     II. Schéma, tableaux d'addressage et matériel
     III. Configuration des postes clients, admin et RH
     
-Notre infra. GNS3 :
+##      I. Infrastructure GNS3 
+![Screenshot_1](https://github.com/KyoshinSan/B2-CCNA/blob/master/tp/4/archi.png)
 
 ##      II. Composition de l'infrastructure et tableau d'addressage 
 
