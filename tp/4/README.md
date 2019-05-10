@@ -125,7 +125,7 @@ Print1> save conftp
 Saving startup configuration to conftp.vpc
 .  done
 ```
-
+On fait de même pour les autres imprimantes.
 config HA Nginx :<br />
 notes perso : <br />
 
