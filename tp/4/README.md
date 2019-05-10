@@ -72,6 +72,11 @@ $ sudo vi /etc/sysonfig/network-scripts/ifcfg-enp0s3
    NETMASK=255.255.255.0
    ZONE=Public
 ```
+Dans un second temps, nous avons configuré le fichier hosts, dans lequel nous avons renseigné le nom de chaque machine ainsi que leurs adresses respectives
+- Hosts :
+```
+testesteststegegsehsh
+```
 on a fait 1 poste client. hostname, hostnames, enp0s3, copie vm<br />
 config HA Nginx :<br />
 notes perso : <br />
