@@ -13,12 +13,6 @@
 #### Schéma architecture du réseau
 ![Screenshot_2](https://github.com/KyoshinSan/B2-CCNA/blob/master/tp/4/archi.png)
 
-
-notes perso : 
-vi /etc/sysconfig/network
--GATEWAY=ip machine.
-=>ajouter sur les clients et servers les routes par défault qui point vers leur passerelles respectives
-
 #### Tableau d'adressage
 
 | Hosts | `192.168.10.0/24` | `192.168.20.0/24` |	`192.168.30.0/24` |	`192.168.80/24` | `192.168.90.0/24` | 
@@ -57,6 +51,9 @@ vi /etc/sysconfig/network
 ##      III. Configuration des postes clients, admin et RH
 on a fait 1 poste client. hostname, hostnames, enp0s3, copie vm
 config HA Nginx :
-
+notes perso : 
+vi /etc/sysconfig/network
+-GATEWAY=ip machine.
+=>ajouter sur les clients et servers les routes par défault qui point vers leur passerelles respectives
 firewall-cmd --permanent --add-service=high-availability
 
