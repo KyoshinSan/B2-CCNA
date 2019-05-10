@@ -98,8 +98,9 @@ Enfin, nous avons édité le fichier **network** dans le répertoire **sysconfig
 $sudo vi /etc/sysconfig/network
 ```
 ```
-esgeqhsphidrhdr
+GATEWAY=192.168.90.1
 ```
+Une fois ces étapes terminées, on clone la machine client01 afin de créer les autres postes, ainsi il n'y a plus qu'à adapter le **hostname** et **l'adresse ip** des autres machines pour les configurer.
 on a fait 1 poste client. hostname, hostnames, enp0s3, copie vm<br />
 config HA Nginx :<br />
 notes perso : <br />
