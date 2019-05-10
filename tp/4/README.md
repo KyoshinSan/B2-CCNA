@@ -52,8 +52,10 @@
 
 Nous avons dans un premier temps créé une machine client01, à laquelle on a attribué son hostname et adresse ip respectifs (cf. tableau d'adressage).
 - Adresse IP :
-```$ sudo vi /etc/sysonfig/network-scripts/ifcfg-enp0s3
-   
+```
+$ sudo vi /etc/sysonfig/network-scripts/ifcfg-enp0s3
+```
+```
    TYPE=Ethernet
    BOOTPROTO=static
    NAME=enp0s3
@@ -62,7 +64,6 @@ Nous avons dans un premier temps créé une machine client01, à laquelle on a a
    IPADDR=192.168.10.1
    NETMASK=255.255.255.0
    ZONE=Public
-   
 ```
 on a fait 1 poste client. hostname, hostnames, enp0s3, copie vm<br />
 config HA Nginx :<br />
