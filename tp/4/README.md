@@ -101,11 +101,33 @@ $sudo vi /etc/sysconfig/network
 GATEWAY=192.168.90.1
 ```
 Une fois ces étapes terminées, on clone la machine client01 afin de créer les autres postes, ainsi il n'y a plus qu'à adapter le **hostname** et **l'adresse ip** des autres machines pour les configurer.
-on a fait 1 poste client. hostname, hostnames, enp0s3, copie vm<br />
+
+Pour les imprimantes, nous avons créé des VPCS depuis GNS3. Il seulement fallu leur attribuer un nom(depuis GNS3) ainsi que leurs adresses ip respectives, puis sauvegarder la configuration :
+- IP 
+```
+Print1> ip 192.168.80.1/24 192.168.80.254
+```
+```
+Print1> show ip
+
+NAME        : Print1[1]
+IP/MASK     : 192.168.80.1/24
+GATEWAY     : 192.168.80.254
+DNS         :
+MAC         : 00:50:79:66:68:00
+LPORT       : 10041
+RHOST:PORT  : 127.0.0.1:10042
+MTU:        : 1500
+```
+- Sauvegarder la configuration 
+```
+Print1> save conftp
+Saving startup configuration to conftp.vpc
+.  done
+```
+
 config HA Nginx :<br />
 notes perso : <br />
-vi /etc/sysconfig/network<br />
--GATEWAY=ip machine.<br />
-=>ajouter sur les clients et servers les routes par défault qui point vers leur passerelles respectives<br />
+
 firewall-cmd --permanent --add-service=high-availability<br />
 
