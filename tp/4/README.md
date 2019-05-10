@@ -46,3 +46,8 @@ vi /etc/sysconfig/network
 | `Câbles` | `5` | `150,00 €/100 mètres` | `750,00 €` | `Monobrin RJ45 catégorie 7` |
 
 - Prix total de l'infrastructure : 34 020 €
+
+config HA Nginx :
+
+firewall-cmd --permanent --add-service=high-availability
+
