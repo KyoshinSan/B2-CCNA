@@ -4,6 +4,7 @@ INSERER IMAGE DE PRESENTATION ICI.
    #### I. Infrastructure GNS3
    #### II. Schéma, tableaux d'addressage et matériel
    #### III. Configuration des postes clients/admin/RH/serveurs et imprimantes
+   #### IV. Configuration des switchs et VLANs
     
 ##      I. Infrastructure GNS3 
 ![Screenshot_1](https://github.com/KyoshinSan/B2-CCNA/blob/master/tp/4/infragns3.png)
@@ -126,6 +127,8 @@ Saving startup configuration to conftp.vpc
 .  done
 ```
 On fait de même pour les autres imprimantes.
+
+##      IV. Configuration des switchs et VLANs
 config HA Nginx :<br />
 notes perso : <br />
 
