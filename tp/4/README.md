@@ -1,12 +1,13 @@
 # Menu 3 : Infra small/medium office
 
 ## Sommaire
-    I. Composition de l'infrastructure et tableau d'addressage
-    II. Configuration des postes clients, admin et RH
+    I. Infrastructure GNS3
+    II. Schéma, tableaux d'addressage et matériel
+    III. Configuration des postes clients, admin et RH
     
 Notre infra. GNS3 :
 
-##      I. Composition de l'infrastructure et tableau d'addressage 
+##      II. Composition de l'infrastructure et tableau d'addressage 
 
 ### Architecture du réseau
 ![Screenshot_1](https://github.com/KyoshinSan/B2-CCNA/blob/master/tp/4/archi.png)
@@ -52,7 +53,7 @@ vi /etc/sysconfig/network
 
 - Prix total de l'infrastructure : 34 020 €
 
-##      II. Configuration des postes clients, admin et RH
+##      III. Configuration des postes clients, admin et RH
 on a fait 1 poste client. hostname, hostnames, enp0s3, copie vm
 config HA Nginx :
 
