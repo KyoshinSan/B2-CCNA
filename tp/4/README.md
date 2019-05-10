@@ -129,6 +129,13 @@ Saving startup configuration to conftp.vpc
 On fait de même pour les autres imprimantes.
 
 ##      IV. Configuration des switchs et VLANs
+
+##      V. Configuration du _Router-on-a-stick_
+
+##      VI. Configuration du Virtual Router Redundancy Protocol (VRRP)
+
+##      VII. Configuration du serveur web redondée (PCSD, Corosync, Pacemaker / HAProxy)
+
 config HA Nginx :<br />
 notes perso : <br />
 
