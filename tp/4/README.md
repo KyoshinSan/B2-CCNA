@@ -56,7 +56,7 @@ Nous avons dans un premier temps créé une machine client01, à laquelle on a a
 $ sudo vi /etc/hosname
 ```
 ```
-egqiozegg
+client1.lab1.tp4
 ```
 - Adresse IP :
 ```
