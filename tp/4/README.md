@@ -4,7 +4,7 @@ Déroulement
 
 - Choix du sujet
 - INSERER ARCHITECTURE ICI
-![Screenshot_1](https://raw.githubusercontent.com/KyoshinSan/B2-CCNA/master/tp/3/Screenshot_1.png)
+![Screenshot_1](https://github.com/KyoshinSan/B2-CCNA/blob/master/tp/4/infra.png)
 
 
 notes perso : 
