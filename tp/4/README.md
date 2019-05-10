@@ -1,9 +1,13 @@
 # Menu 3 : Infra small/medium office
 
-Déroulement
+## Sommaire
+    I. Composition de l'infrastructure et tableau d'addressage
+    II. Configuration des postes clients, admin et RH
+    
+Notre infra. GNS3 :
+
 ##      I. Composition de l'infrastructure et tableau d'addressage 
 
-- Choix du sujet
 ### Architecture du réseau
 ![Screenshot_1](https://github.com/KyoshinSan/B2-CCNA/blob/master/tp/4/archi.png)
 
