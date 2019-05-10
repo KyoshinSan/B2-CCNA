@@ -57,7 +57,7 @@ Nous avons dans un premier temps créé une machine **client01**, à laquelle on
 $ sudo vi /etc/hosname
 ```
 ```
-client1.lab1.tp4
+client1.tp4
 ```
 - Adresse IP :
 ```
@@ -79,19 +79,19 @@ Dans un second temps, nous avons configuré le fichier **hosts**, dans lequel no
 $ sudo vi /etc/hosts
 ```
 ```
-127.0.0.1 localhost localhosts.localdomain localhost4 localhost4.localdomain4
-::1       localhost localhosts.localdomain localhost6 localhost6.localdomain6
-client1.lab1.tp4 192.168.10.1
-client6.lab1.tp4 192.168.10.6
-client11.lab1.tp4 192.168.10.11
-client16.lab1.tp4 192.168.10.16
-admin.lab1.tp4 192.168.30.1
-rh1.lab1.tp4 192.168.20.1
-server.lab1.tp4 192.168.90.1
-server2.lab1.tp4 192.168.90.2
-server3.lab1.tp4 192.168.90.3
-server4.lab1.tp4 192.168.90.4
-server5.lab1.tp4 192.168.90.5
+127.0.0.1   localhost localhost.localdomain localhost4 localhost4.localdomain4
+::1         localhost localhost.localdomain localhost6 localhost6.localdomain6
+192.168.10.1 client1 client1.tp4
+192.168.10.6 client6 client6.tp4
+192.168.10.11 client11 client11.tp4
+192.168.10.16 client16 client16.tp4
+192.168.20.1 rh1 rh1.tp4
+192.168.30.1 admin admin.tp4
+192.168.90.1 server1 server1.tp4
+192.168.90.2 server2 server2.tp4
+192.168.90.3 server3 server3.tp4
+192.168.90.4 server4 server4.tp4
+192.168.90.5 server5 server5.tp4
 ```
 Enfin, nous avons édité le fichier **network** dans le répertoire **sysconfig** afin d'y ajouter la route par défaut qui pointe vers sa passerelle respective. C'est une étape nécéssaire à la mise en place du **router on-a-stick** à venir.
 - Network :
@@ -99,7 +99,12 @@ Enfin, nous avons édité le fichier **network** dans le répertoire **sysconfig
 $sudo vi /etc/sysconfig/network
 ```
 ```
-GATEWAY=192.168.90.1
+GATEWAY=192.168.10.254
+```
+```
+[jdinh@client1 ~]$ ip r s
+default via 192.168.10.254 dev enp0s3 proto static metric 100
+192.168.10.0/24 dev enp0s3 proto kernel scope link src 192.168.10.1 metric 100
 ```
 Une fois ces étapes terminées, on clone la machine client01 afin de créer les autres postes, ainsi il n'y a plus qu'à adapter le **hostname** et **l'adresse ip** des autres machines pour les configurer.
 
