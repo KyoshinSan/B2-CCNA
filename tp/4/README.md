@@ -50,7 +50,7 @@
 
 ##      III. Configuration des postes clients, admin, RH et des serveurs
 
-Nous avons dans un premier temps créé une machine client01, à laquelle on a attribué son hostname et adresse ip respectifs (cf. tableau d'adressage).
+Nous avons dans un premier temps créé une machine **client01**, à laquelle on a attribué son **hostname et adresse ip respectifs** (cf. tableau d'adressage).
 - Hostname : 
 ``` 
 $ sudo vi /etc/hosname
@@ -72,7 +72,7 @@ $ sudo vi /etc/sysonfig/network-scripts/ifcfg-enp0s3
    NETMASK=255.255.255.0
    ZONE=Public
 ```
-Dans un second temps, nous avons configuré le fichier hosts, dans lequel nous avons renseigné le nom de chaque machine ainsi que leurs adresses respectives
+Dans un second temps, nous avons configuré le fichier **hosts**, dans lequel nous avons renseigné le nom de chaque machine ainsi que leurs **adresses respectives**.
 - Hosts :
 ```
 $ sudo vi /etc/hosts
@@ -91,6 +91,14 @@ server2.lab1.tp4 192.168.90.2
 server3.lab1.tp4 192.168.90.3
 server4.lab1.tp4 192.168.90.4
 server5.lab1.tp4 192.168.90.5
+```
+Enfin, nous avons édité le fichier **network** dans le répertoire **sysconfig** afin d'y ajouter la route par défaut qui pointe vers sa passerelle respective. C'est une étape nécéssaire à la mise en place du **router on-a-stick** à venir.
+- Network :
+```
+$sudo vi /etc/sysconfig/network
+```
+```
+esgeqhsphidrhdr
 ```
 on a fait 1 poste client. hostname, hostnames, enp0s3, copie vm<br />
 config HA Nginx :<br />
