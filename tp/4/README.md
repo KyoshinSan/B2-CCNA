@@ -133,4 +133,7 @@ config HA Nginx :<br />
 notes perso : <br />
 
 firewall-cmd --permanent --add-service=high-availability<br />
+Firewall au plus pres du routeur. Utilisé haproxy | Pacemaker&Corosync
+OpenVpn avec Radius ?
+VRRP, HSRP with subnet ?
 
