@@ -10,7 +10,7 @@
 
 ##      II. Composition de l'infrastructure et tableau d'addressage 
 
-### Architecture du réseau
+#### Schéma architecture du réseau
 ![Screenshot_2](https://github.com/KyoshinSan/B2-CCNA/blob/master/tp/4/archi.png)
 
 
@@ -19,7 +19,7 @@ vi /etc/sysconfig/network
 -GATEWAY=ip machine.
 =>ajouter sur les clients et servers les routes par défault qui point vers leur passerelles respectives
 
-### Tableau d'adressage
+#### Tableau d'adressage
 
 | Hosts | `192.168.10.0/24` | `192.168.20.0/24` |	`192.168.30.0/24` |	`192.168.80/24` | `192.168.90.0/24` | 
 | ---------------- | ----------- | ----------- | ------------ | ------------ | ------------ | 
@@ -41,7 +41,7 @@ vi /etc/sysconfig/network
 | `printer5.lab1.tp4` | X           | X           | X            | `192.168.80.5/24` | X |
 
 
-### Tableau Matériel
+#### Tableau Matériel
 
 | Matériel | Quantité | Prix unitaire | Prix Total | Référence |
 | ---------------- | ----------- | ----------- | ----------- | ----------- |
@@ -52,7 +52,7 @@ vi /etc/sysconfig/network
 | `Imprimantes` | `5` | `105,00 €` | `525,00 €` | `Brother DCP 1612 W` |
 | `Câbles` | `5` | `150,00 €/100 mètres` | `750,00 €` | `Monobrin RJ45 catégorie 7` |
 
-- Prix total de l'infrastructure : 34 020 €
+#### Prix total de l'infrastructure : 34 020 €
 
 ##      III. Configuration des postes clients, admin et RH
 on a fait 1 poste client. hostname, hostnames, enp0s3, copie vm
