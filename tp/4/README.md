@@ -49,11 +49,11 @@
 #### Prix total de l'infrastructure : 34 020 €
 
 ##      III. Configuration des postes clients, admin et RH
-on a fait 1 poste client. hostname, hostnames, enp0s3, copie vm
-config HA Nginx :
-notes perso : 
-vi /etc/sysconfig/network
--GATEWAY=ip machine.
-=>ajouter sur les clients et servers les routes par défault qui point vers leur passerelles respectives
-firewall-cmd --permanent --add-service=high-availability
+on a fait 1 poste client. hostname, hostnames, enp0s3, copie vm<br />
+config HA Nginx :<br />
+notes perso : <br />
+vi /etc/sysconfig/network<br />
+-GATEWAY=ip machine.<br />
+=>ajouter sur les clients et servers les routes par défault qui point vers leur passerelles respectives<br />
+firewall-cmd --permanent --add-service=high-availability<br />
 
