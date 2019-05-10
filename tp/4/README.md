@@ -1,9 +1,9 @@
 # Menu 3 : Infra small/medium office
 
 ## Sommaire
-    I. Infrastructure GNS3
-    II. Schéma, tableaux d'addressage et matériel
-    III. Configuration des postes clients, admin et RH
+   #### I. Infrastructure GNS3
+   #### II. Schéma, tableaux d'addressage et matériel
+   #### III. Configuration des postes clients, admin et RH
     
 ##      I. Infrastructure GNS3 
 ![Screenshot_1](https://github.com/KyoshinSan/B2-CCNA/blob/master/tp/4/infragns3.png)
