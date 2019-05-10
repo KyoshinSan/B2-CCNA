@@ -49,7 +49,21 @@
 #### Prix total de l'infrastructure : 34 020 €
 
 ##      III. Configuration des postes clients, admin, RH et des serveurs
-   - Nous avons dans un premier temps créé une machine client01, à laquelle on a attribué une adresse IP privée : 192.168.10.1\n   
+
+Nous avons dans un premier temps créé une machine client01, à laquelle on a attribué son hostname et adresse ip respectifs (cf. tableau d'adressage).
+- Adresse IP :
+```$ sudo vi /etc/sysonfig/network-scripts/ifcfg-enp0s3
+   
+   TYPE=Ethernet
+   BOOTPROTO=static
+   NAME=enp0s3
+   DEVICE=enp0s3
+   ONBOOT=yes
+   IPADDR=192.168.10.1
+   NETMASK=255.255.255.0
+   ZONE=Public
+   
+```
 on a fait 1 poste client. hostname, hostnames, enp0s3, copie vm<br />
 config HA Nginx :<br />
 notes perso : <br />
