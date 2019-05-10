@@ -1,6 +1,7 @@
 # Menu 3 : Infra small/medium office
 
 Déroulement
+##      I. Composition de l'infrastructure et tableau d'addressage 
 
 - Choix du sujet
 ### Architecture du réseau
@@ -47,6 +48,8 @@ vi /etc/sysconfig/network
 
 - Prix total de l'infrastructure : 34 020 €
 
+##      II. Configuration des postes clients, admin et RH
+on a fait 1 poste client. hostname, hostnames, enp0s3, copie vm
 config HA Nginx :
 
 firewall-cmd --permanent --add-service=high-availability
