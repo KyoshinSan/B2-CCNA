@@ -4,7 +4,7 @@ Déroulement
 
 - Choix du sujet
 - INSERER ARCHITECTURE ICI
-- INSERER PLAN D'ADDRESSAGE ICI
+![Screenshot_1](https://raw.githubusercontent.com/KyoshinSan/B2-CCNA/master/tp/3/Screenshot_1.png)
 
 
 notes perso : 
