@@ -6,12 +6,12 @@
     III. Configuration des postes clients, admin et RH
     
 ##      I. Infrastructure GNS3 
-![Screenshot_1](https://github.com/KyoshinSan/B2-CCNA/blob/master/tp/4/archi.png)
+![Screenshot_1](https://github.com/KyoshinSan/B2-CCNA/blob/master/tp/4/infragns3.png)
 
 ##      II. Composition de l'infrastructure et tableau d'addressage 
 
 ### Architecture du réseau
-![Screenshot_1](https://github.com/KyoshinSan/B2-CCNA/blob/master/tp/4/archi.png)
+![Screenshot_2](https://github.com/KyoshinSan/B2-CCNA/blob/master/tp/4/archi.png)
 
 
 notes perso : 
