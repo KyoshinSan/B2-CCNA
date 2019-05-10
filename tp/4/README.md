@@ -3,7 +3,7 @@
 Déroulement
 
 - Choix du sujet
-- INSERER ARCHITECTURE ICI
+<h3>Architecture du réseau</h3>
 ![Screenshot_1](https://github.com/KyoshinSan/B2-CCNA/blob/master/tp/4/archi.png)
 
 
