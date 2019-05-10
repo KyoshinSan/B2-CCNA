@@ -3,7 +3,7 @@
 Déroulement
 
 - Choix du sujet
-<h3>Architecture du réseau</h3>
+### Architecture du réseau
 ![Screenshot_1](https://github.com/KyoshinSan/B2-CCNA/blob/master/tp/4/archi.png)
 
 
@@ -12,7 +12,7 @@ vi /etc/sysconfig/network
 -GATEWAY=ip machine.
 =>ajouter sur les clients et servers les routes par défault qui point vers leur passerelles respectives
 
--  Tableau d'adressage
+### Tableau d'adressage
 
 | Hosts | `192.168.10.0/24` | `192.168.20.0/24` |	`192.168.30.0/24` |	`192.168.80/24` | `192.168.90.0/24` | 
 | ---------------- | ----------- | ----------- | ------------ | ------------ | ------------ | 
@@ -34,7 +34,7 @@ vi /etc/sysconfig/network
 | `printer5.lab1.tp4` | X           | X           | X            | `192.168.80.5/24` | X |
 
 
-- Tableau Matériel
+### Tableau Matériel
 
 | Matériel | Quantité | Prix unitaire | Prix Total | Référence |
 | ---------------- | ----------- | ----------- | ----------- | ----------- |
