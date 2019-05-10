@@ -1,5 +1,5 @@
 # Menu 3 : Infra small/medium office
-![Screenshot_0](https://github.com/KyoshinSan/B2-CCNA/blob/master/tp/4/network.jpg)
+INSERER IMAGE DE PRESENTATION ICI.
 ## Sommaire
    #### I. Infrastructure GNS3
    #### II. Schéma, tableaux d'addressage et matériel
