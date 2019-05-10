@@ -51,6 +51,13 @@
 ##      III. Configuration des postes clients, admin, RH et des serveurs
 
 Nous avons dans un premier temps créé une machine client01, à laquelle on a attribué son hostname et adresse ip respectifs (cf. tableau d'adressage).
+- Hostname : 
+``` 
+$ sudo vi /etc/hosname
+```
+```
+egqiozegg
+```
 - Adresse IP :
 ```
 $ sudo vi /etc/sysonfig/network-scripts/ifcfg-enp0s3
