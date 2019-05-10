@@ -75,7 +75,22 @@ $ sudo vi /etc/sysonfig/network-scripts/ifcfg-enp0s3
 Dans un second temps, nous avons configuré le fichier hosts, dans lequel nous avons renseigné le nom de chaque machine ainsi que leurs adresses respectives
 - Hosts :
 ```
-testesteststegegsehsh
+$ sudo vi /etc/hosts
+```
+```
+127.0.0.1 localhost localhosts.localdomain localhost4 localhost4.localdomain4
+::1       localhost localhosts.localdomain localhost6 localhost6.localdomain6
+client1.lab1.tp4 192.168.10.1
+client6.lab1.tp4 192.168.10.6
+client11.lab1.tp4 192.168.10.11
+client16.lab1.tp4 192.168.10.16
+admin.lab1.tp4 192.168.30.1
+rh1.lab1.tp4 192.168.20.1
+server.lab1.tp4 192.168.90.1
+server2.lab1.tp4 192.168.90.2
+server3.lab1.tp4 192.168.90.3
+server4.lab1.tp4 192.168.90.4
+server5.lab1.tp4 192.168.90.5
 ```
 on a fait 1 poste client. hostname, hostnames, enp0s3, copie vm<br />
 config HA Nginx :<br />
