@@ -3,7 +3,7 @@
 ## Sommaire
    #### I. Infrastructure GNS3
    #### II. Schéma, tableaux d'addressage et matériel
-   #### III. Configuration des postes clients, admin et RH
+   #### III. Configuration des postes clients, admin, RH et des serveurs
     
 ##      I. Infrastructure GNS3 
 ![Screenshot_1](https://github.com/KyoshinSan/B2-CCNA/blob/master/tp/4/infragns3.png)
@@ -48,7 +48,8 @@
 
 #### Prix total de l'infrastructure : 34 020 €
 
-##      III. Configuration des postes clients, admin et RH
+##      III. Configuration des postes clients, admin, RH et des serveurs
+   - Nous avons dans un premier temps créé une machine client01, à laquelle on a attribué une adresse IP privée : 192.168.10.1\n   
 on a fait 1 poste client. hostname, hostnames, enp0s3, copie vm<br />
 config HA Nginx :<br />
 notes perso : <br />
