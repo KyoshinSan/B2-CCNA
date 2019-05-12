@@ -458,7 +458,7 @@ traceroute to server1 (192.168.90.1), 30 hops max, 60 byte packets
 ```
 On peut voir que ça passe par `R2` (192.168.10.253)
 
-##      VII. Configuration du serveur web redondée (PCSD, Corosync, Pacemaker / HAProxy)
+##      VII. Configuration du serveur web redondée (HAProxy)
 
 **Prérequis :** 
 
