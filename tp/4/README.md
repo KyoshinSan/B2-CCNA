@@ -134,9 +134,63 @@ Saving startup configuration to conftp.vpc
 On fait de même pour les autres imprimantes.
 
 ##      IV. Configuration des switchs et VLANs
+![Screenshot_1](https://github.com/KyoshinSan/B2-CCNA/blob/master/tp/4/trunk.png)
+Sur le switch6, nous avons tout d'abord créé les VLANs de notre réseau :
+- *Switch6*
+```
+# conf t
+```
+```
+(config)# vlan 10
+(config-vlan)# name VLAN10
+(config-vlan)# exit
+(config)# vlan 20
+(config-vlan)# name VLAN20
+(config-vlan)# exit
+(config)# vlan 30
+(config-vlan)# name VLAN30
+(config-vlan)# exit
+(config)# vlan 80
+(config-vlan)# name VLAN80
+(config-vlan)# exit
+(config)# vlan 90
+(config-vlan)# name VLAN90
+(config-vlan)# exit
+```
 
-Nous avons tout d'abord créé les 6 *switchs*. Dans notre architecture, nous avons configuré un trunk pour chaque switch avec le *Switch6*
+- Puis configuré chaque interface entre deux switchs (mode trunk) :
+```
+(config)# interface Ethernet 0/1
+(config-if)# switchport trunk encapsulation dot1q
+(config-if)# switchport mode trunk
+```
+--> Le faire pour toutes les interfaces du *switch6*
 
+- Afficher les VLANs actuels du *Switch6*
+```
+# show vlan
+# show vlan br
+```
+```
+Switch6#show vlan br
+
+VLAN Name                             Status    Ports
+---- -------------------------------- --------- -------------------------------
+1    default                          active    Et0/1, Et0/2, Et0/3, Et1/0
+                                                Et1/2, Et1/3, Et2/0, Et2/1
+                                                Et2/2, Et2/3, Et3/0, Et3/1
+                                                Et3/2, Et3/3
+10   vlan10                           active
+20   vlan20                           active
+30   vlan30                           active
+80   vlan80                           active
+90   vlan90                           active
+1002 fddi-default                     act/unsup
+1003 token-ring-default               act/unsup
+1004 fddinet-default                  act/unsup
+1005 trnet-default                    act/unsup
+
+```
 ##      V. Configuration du _Router-on-a-stick_
 
 --> On passe à la configuration de `R1` en tant que *router-on-a-stick*
