@@ -168,12 +168,9 @@ Sur le switch6, nous avons tout d'abord créé les VLANs de notre réseau :
 
 - Afficher les VLANs actuels du *Switch6*
 ```
-# show vlan
-# show vlan br
+Switch6# show vlan br
 ```
 ```
-Switch6#show vlan br
-
 VLAN Name                             Status    Ports
 ---- -------------------------------- --------- -------------------------------
 1    default                          active    Et0/1, Et0/2, Et0/3, Et1/0
