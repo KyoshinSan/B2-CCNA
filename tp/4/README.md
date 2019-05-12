@@ -137,6 +137,98 @@ On fait de même pour les autres imprimantes.
 
 ##      V. Configuration du _Router-on-a-stick_
 
+--> On passe à la configuration de `R1` en tant que *router-on-a-stick*
+
+- `R1`
+
+```
+# on passe en mode config et on démarre l'interface que l'on va 'couper' en plusieurs interfaces
+R1#conf t
+R1(config)#int fastEthernet 1/0
+R1(config-if)#no shut
+R1(config-if)#exit
+
+# on crée une nouvelle interface virtuelle pour le VLAN 10
+R1(config)#int fastEthernet 1/0.10
+
+# on modifie l'encapsulation en dot1Q et on la tague sur le VLAN 10
+R1(config-subif)#encapsulation dot1Q 10
+R1(config-subif)#ip address 192.168.10.254 255.255.255.0
+
+# pareil pour les autres VLAN
+R1(config)#int fastEthernet 1/0.20
+R1(config-subif)#encapsulation dot1Q 20
+R1(config-subif)#ip address 192.168.20.254 255.255.255.0
+
+R1(config)#int fastEthernet 1/0.30
+R1(config-subif)#encapsulation dot1Q 30
+R1(config-subif)#ip address 192.168.30.254 255.255.255.0
+
+R1(config)#int fastEthernet 1/0.80
+R1(config-subif)#encapsulation dot1Q 80
+R1(config-subif)#ip address 192.168.80.254 255.255.255.0
+
+R1(config)#int fastEthernet 1/0.90
+R1(config-subif)#encapsulation dot1Q 90
+R1(config-subif)#ip address 192.168.90.254 255.255.255.0
+
+# on vérifie nos changement
+R1#sh ip int br
+Interface                  IP-Address      OK? Method Status                Protocol
+FastEthernet0/0            192.168.122.12  YES DHCP   up                    up
+FastEthernet1/0            unassigned      YES NVRAM  up                    up
+FastEthernet1/0.10         192.168.10.254  YES NVRAM  up                    up
+FastEthernet1/0.20         192.168.20.254  YES NVRAM  up                    up
+FastEthernet1/0.30         192.168.30.254  YES NVRAM  up                    up
+FastEthernet1/0.80         192.168.80.254  YES NVRAM  up                    up
+FastEthernet1/0.90         192.168.90.254  YES NVRAM  up                    up
+FastEthernet2/0            unassigned      YES NVRAM  administratively down down
+FastEthernet3/0            unassigned      YES NVRAM  administratively down down
+NVI0                       unassigned      NO  unset  up                    up
+```
+
+--> Petite vérification que l'admin peut joindre tous le monde
+
+- `admin`
+
+```
+[jdinh@admin ~]$ ping server1 -c 2
+PING server1 (192.168.90.1) 56(84) bytes of data.
+64 bytes from server1 (192.168.90.1): icmp_seq=1 ttl=63 time=18.7 ms
+64 bytes from server1 (192.168.90.1): icmp_seq=2 ttl=63 time=13.3 ms
+
+--- server1 ping statistics ---
+2 packets transmitted, 2 received, 0% packet loss, time 1002ms
+rtt min/avg/max/mdev = 13.347/16.044/18.742/2.700 ms
+
+[jdinh@admin ~]$ ping client1 -c 2
+PING client1 (192.168.10.1) 56(84) bytes of data.
+64 bytes from client1 (192.168.10.1): icmp_seq=1 ttl=63 time=13.1 ms
+64 bytes from client1 (192.168.10.1): icmp_seq=2 ttl=63 time=21.4 ms
+
+--- client1 ping statistics ---
+2 packets transmitted, 2 received, 0% packet loss, time 1001ms
+rtt min/avg/max/mdev = 13.150/17.311/21.473/4.163 ms
+
+[jdinh@admin ~]$ ping rh1 -c 2
+PING rh1 (192.168.20.1) 56(84) bytes of data.
+64 bytes from rh1 (192.168.20.1): icmp_seq=1 ttl=63 time=22.6 ms
+64 bytes from rh1 (192.168.20.1): icmp_seq=2 ttl=63 time=33.2 ms
+
+--- rh1 ping statistics ---
+2 packets transmitted, 2 received, 0% packet loss, time 1000ms
+rtt min/avg/max/mdev = 22.607/27.919/33.232/5.315 ms
+
+[jdinh@admin ~]$ ping 192.168.80.5 -c 2
+PING 192.168.80.5 (192.168.80.5) 56(84) bytes of data.
+64 bytes from 192.168.80.5: icmp_seq=1 ttl=63 time=21.4 ms
+64 bytes from 192.168.80.5: icmp_seq=2 ttl=63 time=18.8 ms
+
+--- 192.168.80.5 ping statistics ---
+2 packets transmitted, 2 received, 0% packet loss, time 1001ms
+rtt min/avg/max/mdev = 18.801/20.117/21.433/1.316 ms
+```
+
 ##      VI. Configuration du Virtual Router Redundancy Protocol (VRRP)
 
 ##      VII. Configuration du serveur web redondée (PCSD, Corosync, Pacemaker / HAProxy)
