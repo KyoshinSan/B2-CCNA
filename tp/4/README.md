@@ -135,6 +135,8 @@ On fait de même pour les autres imprimantes.
 
 ##      IV. Configuration des switchs et VLANs
 
+Nous avons tout d'abord créé les 6 *switchs*. Dans notre architecture, nous avons configuré un trunk pour chaque switch avec le *Switch6*
+
 ##      V. Configuration du _Router-on-a-stick_
 
 --> On passe à la configuration de `R1` en tant que *router-on-a-stick*
