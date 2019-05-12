@@ -231,9 +231,115 @@ rtt min/avg/max/mdev = 18.801/20.117/21.433/1.316 ms
 
 ##      VI. Configuration du Virtual Router Redundancy Protocol (VRRP)
 
-Dans cette partie, on va mettre en place la redondance des routeurs. Cela va changer un peu notre architecture actuelle.
+Dans cette partie, on va mettre en place la redondance des routeurs. Cela va changer un peu notre architecture actuelle. On va ajouter R2 dans notre schéma.
 
+![Screenshot_2]()
 
+Puis on change les ip des routers :
+
+Configuration de `R1` :
+
+```
+R1#sh ip int br
+Interface                  IP-Address      OK? Method Status                Protocol
+FastEthernet0/0            192.168.122.12  YES DHCP   up                    up
+FastEthernet1/0            unassigned      YES NVRAM  up                    up
+FastEthernet1/0.10         192.168.10.252  YES manual up                    up
+FastEthernet1/0.20         192.168.20.252  YES manual up                    up
+FastEthernet1/0.30         192.168.30.252  YES manual up                    up
+FastEthernet1/0.80         192.168.80.252  YES manual up                    up
+FastEthernet1/0.90         192.168.90.252  YES manual up                    up
+FastEthernet2/0            unassigned      YES NVRAM  administratively down down
+FastEthernet3/0            unassigned      YES NVRAM  administratively down down
+NVI0                       unassigned      NO  unset  up                    up
+```
+
+Configuration de `R2` :
+
+```
+R2#sh ip int br
+Interface                  IP-Address      OK? Method Status                Protocol
+FastEthernet0/0            192.168.122.13  YES DHCP   up                    up
+FastEthernet1/0            unassigned      YES unset  up                    up
+FastEthernet1/0.10         192.168.10.253  YES manual up                    up
+FastEthernet1/0.20         192.168.20.253  YES manual up                    up
+FastEthernet1/0.30         192.168.30.253  YES manual up                    up
+FastEthernet1/0.80         192.168.80.253  YES manual up                    up
+FastEthernet1/0.90         192.168.90.253  YES manual up                    up
+FastEthernet2/0            unassigned      YES unset  administratively down down
+FastEthernet3/0            unassigned      YES unset  administratively down down
+NVI0                       unassigned      NO  unset  up                    up
+```
+
+Maintenant on va passer à la configuration de VRRP sur les routeurs.
+
+- `R1` :
+
+```
+R1(config)# interface fastEthernet 1/0.10
+R1(config-if)# vrrp 1 ip 192.168.10.254      # IP virtuelle
+R1(config-if)# vrrp 1 priority 200           # Pour définir le master et les backup (le master est celui qui a la plus haute pirorité
+R1(config-if)# vrrp 1 preempt                # on active le mode préemption (pour redevenir master en cas de coupure)
+```
+
+- `R2` :
+
+```
+R2(config)# interface fastEthernet 1/0.10
+R2(config-if)# vrrp 1 ip 192.168.10.254
+R2(config-if)# vrrp 1 priority 100
+```
+
+On fait la même chose pour autre interface.
+
+Pour vérifier la confuguration :
+
+```
+R1#sh vrrp
+FastEthernet1/0.10 - Group 1
+  State is Master                         # on peut voir que R1 est le Master
+  Virtual IP address is 192.168.10.254    # l'addresse virutelle est bien la gateway
+  Virtual MAC address is 0000.5e00.0101
+  Advertisement interval is 1.000 sec
+  Preemption enabled
+  Priority is 200
+  Master Router is 192.168.10.252 (local), priority is 200
+  Master Advertisement interval is 1.000 sec
+  Master Down interval is 3.218 sec
+
+R2#sh vrrp
+FastEthernet1/0.10 - Group 1
+  State is Backup                         # on peut voir que R2 est un backup
+  Virtual IP address is 192.168.10.254 
+  Virtual MAC address is 0000.5e00.0101
+  Advertisement interval is 1.000 sec
+  Preemption enabled
+  Priority is 100
+  Master Router is 192.168.10.252, priority is 200
+  Master Advertisement interval is 1.000 sec
+  Master Down interval is 3.609 sec (expires in 2.789 sec)
+
+```
+
+Passons au test :
+
+```
+[jdinh@client1 ~]$ traceroute server1
+traceroute to server1 (192.168.90.1), 30 hops max, 60 byte packets
+ 1  192.168.10.252 (192.168.10.252)  13.860 ms  13.758 ms  13.663 ms
+ 2  server1 (192.168.90.1)  22.099 ms !X  22.015 ms !X  21.935 ms !X
+```
+On peut voir que ça passe par `R1` (192.168.10.252)
+
+- On coupe `R1` puis on refait un `traceroute` :
+
+```
+[jdinh@client1 ~]$ traceroute server1
+traceroute to server1 (192.168.90.1), 30 hops max, 60 byte packets
+ 1  192.168.10.253 (192.168.10.253)  13.072 ms  12.947 ms  12.859 ms
+ 2  server1 (192.168.90.1)  22.510 ms !X  22.435 ms !X  22.326 ms !X
+```
+On peut voir que ça passe par `R2` (192.168.10.253)
 
 ##      VII. Configuration du serveur web redondée (PCSD, Corosync, Pacemaker / HAProxy)
 
