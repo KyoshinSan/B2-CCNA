@@ -460,11 +460,141 @@ On peut voir que ça passe par `R2` (192.168.10.253)
 
 ##      VII. Configuration du serveur web redondée (PCSD, Corosync, Pacemaker / HAProxy)
 
-config HA Nginx :<br />
-notes perso : <br />
+**Prérequis :** 
 
-firewall-cmd --permanent --add-service=high-availability<br />
-Firewall au plus pres du routeur. Utilisé haproxy | Pacemaker&Corosync
-OpenVpn avec Radius ?
-VRRP, HSRP with subnet ?
+3 serveur CentOS 7
+   - server1 (load-balancer)
+   - server2 (serveur nginx 1)
+   - server3 (serveur nginx 2)
+   
+ **Installation :**
 
+On installe **HAProxy** sur `server1` :
+
+```
+[jdinh@server1 ~]$ sudo yum -y install haproxy
+```
+
+```
+[jdinh@server1 ~]$ cd /etc/haproxy/
+[jdinh@server1 haproxy]$ sudo mv haproxy.cfg haproxy.cfg.orig
+```
+
+```
+#---------------------------------------------------------------------
+# Global settings
+#---------------------------------------------------------------------
+global
+    log         127.0.0.1 local2     
+
+    chroot      /var/lib/haproxy
+    pidfile     /var/run/haproxy.pid
+    maxconn     4000
+    user        haproxy             
+    group       haproxy
+    daemon
+
+    # turn on stats unix socket
+    stats socket /var/lib/haproxy/stats
+
+#---------------------------------------------------------------------
+# common defaults that all the 'listen' and 'backend' sections will
+# use if not designated in their block
+#---------------------------------------------------------------------
+defaults
+    mode                    http
+    log                     global
+    option                  httplog
+    option                  dontlognull
+    option http-server-close
+    option forwardfor       except 127.0.0.0/8
+    option                  redispatch
+    retries                 3
+    timeout http-request    10s
+    timeout queue           1m
+    timeout connect         10s
+    timeout client          1m
+    timeout server          1m
+    timeout http-keep-alive 10s
+    timeout check           10s
+    maxconn                 3000
+
+#---------------------------------------------------------------------
+#HAProxy Monitoring Config
+#---------------------------------------------------------------------
+listen haproxy3-monitoring *:8080               
+    mode http
+    option forwardfor
+    option httpclose
+    stats enable
+    stats show-legends
+    stats refresh 5s
+    stats uri /stats                            
+    stats realm Haproxy\ Statistics
+    stats auth howtoforge:howtoforge            
+    stats admin if TRUE
+    default_backend app-main                  
+
+#---------------------------------------------------------------------
+# FrontEnd Configuration
+#---------------------------------------------------------------------
+frontend main
+    bind *:80
+    option http-server-close
+    option forwardfor
+    default_backend app-main
+
+#---------------------------------------------------------------------
+# BackEnd roundrobin as balance algorithm
+#---------------------------------------------------------------------
+backend app-main
+    balance roundrobin                                     #Balance algorithm
+    option httpchk HEAD / HTTP/1.1\r\nHost:\ localhost    #Check the server application is up and healty - 200 status code
+    server server2 192.168.90.2:80 check                 #server2
+    server server3 192.168.90.3:80 check                 #server3
+```
+
+Maintenant on démarre le service :
+
+```
+[jdinh@server1 ~]$ sudo systemctl start haproxy
+[jdinh@server1 ~]$ sudo systemctl enable haproxy
+```
+
+Sur `server2` et `server3` on installe Nginx :
+
+```
+[jdinh@server2 ~]$ sudo yum -y install epel-release
+[jdinh@server2 ~]$ sudo yum -y install nginx
+[jdinh@server2 ~]$ sudo vi /usr/share/nginx/html/index.html
+<h1>server2 - Test Server Web</h1>
+```
+
+Puis on démarre le service :
+
+```
+[jdinh@server2 ~]$ sudo systemctl enable nginx
+[jdinh@server2 ~]$ sudo systemctl start nginx
+```
+
+On configure le `Firewalld` :
+
+```
+[jdinh@server2 ~]$ sudo firewall-cmd --permanent --add-service=http
+[jdinh@server2 ~]$ sudo firewall-cmd --permanent --add-service=https
+[jdinh@server2 ~]$ sudo firewall-cmd --reload
+```
+
+Il reste plus qu'a tester :
+
+```
+[jdinh@client1 ~]$ curl server1
+<h1>server2 - Test Server Web</h1>
+```
+
+Maintenant si on coupe le `server2` :
+
+```
+[jdinh@client1 ~]$ curl server1
+<h1>server3 - Test Server Web</h1>
+```
