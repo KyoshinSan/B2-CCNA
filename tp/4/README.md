@@ -191,6 +191,46 @@ VLAN Name                             Status    Ports
 1005 trnet-default                    act/unsup
 
 ```
+
+- Pour les *Switch 1, 2, 3 et 5*, on répète la même procédure mais il s'agit ici de ne créer que les *VLANs 10*(VLAN des clients) et *80*(VLAN des imprimantes).
+
+Après avoir réalisé cela, on peut observer les VLANs des switchs 1/2/3/5 (qui sont donc les mêmes) :
+```
+Switch3#show vlan br
+
+VLAN Name                             Status    Ports
+---- -------------------------------- --------- -------------------------------
+1    default                          active    Et0/3, Et1/0, Et1/1, Et1/2
+                                                Et1/3, Et2/0, Et2/1, Et2/2
+                                                Et2/3, Et3/0, Et3/1, Et3/2
+                                                Et3/3
+10   vlan10                           active    Et0/1
+80   vlan80                           active    Et0/2
+1002 fddi-default                     act/unsup
+1003 token-ring-default               act/unsup
+1004 fddinet-default                  act/unsup
+1005 trnet-default                    act/unsup
+```
+- Le *Switch4* quant à lui sera utilisé par les postes *Admin* et *RH*, on le configure donc en n'y ajoutant les *VLANs 20, 30 et 80*.
+VLANs créé sur le *Switch4* :
+```
+Switch4#show vlan br
+
+VLAN Name                             Status    Ports
+---- -------------------------------- --------- -------------------------------
+1    default                          active    Et1/0, Et1/1, Et1/2, Et1/3
+                                                Et2/0, Et2/1, Et2/2, Et2/3
+                                                Et3/0, Et3/1, Et3/2, Et3/3
+20   vlan20                           active    Et0/2
+30   vlan30                           active    Et0/1
+80   vlan80                           active    Et0/3
+1002 fddi-default                     act/unsup
+1003 token-ring-default               act/unsup
+1004 fddinet-default                  act/unsup
+1005 trnet-default                    act/unsup
+
+```
+
 ##      V. Configuration du _Router-on-a-stick_
 
 --> On passe à la configuration de `R1` en tant que *router-on-a-stick*
