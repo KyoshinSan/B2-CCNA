@@ -49,11 +49,11 @@
 | `Serveurs` | `5` | `2 000,00 €` | `10 000,00 €` | `PowerEdge T440` |
 | `Postes Employés` | `24` | `900,00 €` | `21 600,00 €` | `DELL XPS Tour` |
 | `Switchs` | `7` | `135,00 €` | `945,00 €` | `Cisco SG110-16` |
-| `Routeur` | `1` | `200,00 €` | `200,00 €` | `Cisco RV320` |
+| `Routeur` | `2` | `200,00 €` | `400,00 €` | `Cisco RV320` |
 | `Imprimantes` | `5` | `105,00 €` | `525,00 €` | `Brother DCP 1612 W` |
 | `Câbles` | `5` | `150,00 €/100 mètres` | `750,00 €` | `Monobrin RJ45 catégorie 7` |
 
-#### Prix total de l'infrastructure : 34 020 €
+#### Prix total de l'infrastructure : 34 220 €
 
 ##      III. Configuration des postes clients/admin/RH/serveurs et imprimantes
 
