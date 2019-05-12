@@ -233,7 +233,7 @@ rtt min/avg/max/mdev = 18.801/20.117/21.433/1.316 ms
 
 Dans cette partie, on va mettre en place la redondance des routeurs. Cela va changer un peu notre architecture actuelle. On va ajouter R2 dans notre schéma.
 
-![Screenshot_2]()
+![Screenshot_2](https://raw.githubusercontent.com/KyoshinSan/B2-CCNA/master/tp/4/Screenshot_2.png)
 
 Puis on change les ip des routers :
 
