@@ -278,7 +278,7 @@ Maintenant on va passer à la configuration de VRRP sur les routeurs.
 ```
 R1(config)# interface fastEthernet 1/0.10
 R1(config-if)# vrrp 1 ip 192.168.10.254      # IP virtuelle
-R1(config-if)# vrrp 1 priority 200           # Pour définir le master et les backup (le master est celui qui a la plus haute pirorité
+R1(config-if)# vrrp 1 priority 200           # Pour définir le master et les backup (le master est celui qui a la plus haute priorité
 R1(config-if)# vrrp 1 preempt                # on active le mode préemption (pour redevenir master en cas de coupure)
 ```
 
@@ -292,7 +292,7 @@ R2(config-if)# vrrp 1 priority 100
 
 On fait la même chose pour autre interface.
 
-Pour vérifier la confuguration :
+Pour vérifier la configuration :
 
 ```
 R1#sh vrrp
