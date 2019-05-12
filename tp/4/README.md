@@ -1,10 +1,16 @@
-# Menu 3 : Infra small/medium office
-INSERER IMAGE DE PRESENTATION ICI.
+# TP4 - Menu 3 : Infra small/medium office
+**Auteur :** DINH Jonathan & HERNANDEZ Theo & SEGHIR Souleimane<br />
+**Date :** 12/05/2019<br />
+**Desc :** Rendu du 4e tp en CCNA
+
 ## Sommaire
    #### I. Infrastructure GNS3
    #### II. Schéma, tableaux d'addressage et matériel
    #### III. Configuration des postes clients/admin/RH/serveurs et imprimantes
    #### IV. Configuration des switchs et VLANs
+   #### V. Configuration du _Router-on-a-stick_
+   #### VI. Configuration du Virtual Router Redundancy Protocol (VRRP)
+   #### VII. Configuration du serveur web redondée (HAProxy)
     
 ##      I. Infrastructure GNS3 
 ![Screenshot_1](https://github.com/KyoshinSan/B2-CCNA/blob/master/tp/4/infragns3.png)
