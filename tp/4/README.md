@@ -231,6 +231,10 @@ rtt min/avg/max/mdev = 18.801/20.117/21.433/1.316 ms
 
 ##      VI. Configuration du Virtual Router Redundancy Protocol (VRRP)
 
+Dans cette partie, on va mettre en place la redondance des routeurs. Cela va changer un peu notre architecture actuelle.
+
+
+
 ##      VII. Configuration du serveur web redondée (PCSD, Corosync, Pacemaker / HAProxy)
 
 config HA Nginx :<br />
