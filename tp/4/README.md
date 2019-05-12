@@ -230,6 +230,30 @@ VLAN Name                             Status    Ports
 1005 trnet-default                    act/unsup
 
 ```
+- Enfin, le *Switch7* sera quant à lui utilisé pour créer le VLAN90, celui des serveurs.
+```
+# conf t
+```
+```
+(config)# vlan 90
+(config-vlan)# name VLAN90
+(config-vlan)# exit
+```
+```
+Switch7#show vlan br
+
+VLAN Name                             Status    Ports
+---- -------------------------------- --------- -------------------------------
+1    default                          active    Et1/2, Et1/3, Et2/0, Et2/1
+                                                Et2/2, Et2/3, Et3/0, Et3/1
+                                                Et3/2, Et3/3
+90   vlan90                           active    Et0/1, Et0/2, Et0/3, Et1/0
+                                                Et1/1
+1002 fddi-default                     act/unsup
+1003 token-ring-default               act/unsup
+1004 fddinet-default                  act/unsup
+1005 trnet-default                    act/unsup
+```
 
 ##      V. Configuration du _Router-on-a-stick_
 
